@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   helper_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 22:25:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 19:58:32 by adechaji         ###   ########.fr       */
+/*   Created: 2025/06/29 17:49:25 by adechaji          #+#    #+#             */
+/*   Updated: 2025/06/29 17:50:55 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../includes/cub3d.h"
 
-# include "cub3d.h"
+int	is_emptyl(char *str)
+{
+	int	i;
 
-//main func
-int		parsing(t_cubed	*cubed);
-int		r_paths(t_cubed	*cubed);
-int		r_map(t_cubed	*cubed);
-int		is_emptyl(char *str);
-void	free_cubed(t_cubed *cubed);
-#endif
+	if (!str)
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
+}

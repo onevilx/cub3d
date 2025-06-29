@@ -6,27 +6,11 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 00:35:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 03:24:43 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:05:10 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	is_emptyl(char *str)
-{
-	int	i;
-
-	if (!str)
-		return (1);
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static int	valid_path(char *path)
 {
@@ -104,14 +88,12 @@ static int	pars_paths(t_cubed *cubed, char *buf)
 	}
 	else if (ft_strcmp(splited[0], "F") == 0)
 	{
-		printf("->->->arg = {%s}->-> set is [%d]\n", arg, cubed->f_set);
 		if (cubed->f_set != 0 || valid_color(arg, &cubed->floor_rgb) == 1)
 			return (free(arg), free_splited(splited), 1);
 		cubed->f_set = 1;
 	}
 	else if (ft_strcmp(splited[0], "C") == 0)
 	{
-		printf("->->->arg = {%s}->-> set is [%d]\n", arg, cubed->c_set);
 		if (cubed->c_set != 0 || valid_color(arg, &cubed->ceiling_rgb) == 1)
 			return (free(arg), free_splited(splited), 1);
 		cubed->c_set = 1;
@@ -139,12 +121,9 @@ int	r_paths(t_cubed	*cubed)
 			free(buf);
 			continue ;
 		}
-		printf("%s", buf);
+		// printf("%s", buf);
 		if (pars_paths(cubed, buf) != 0)
-		{
-			ft_putstr_fd("Error invalid paths or colors\n", 2);
-			return (1);
-		}
+			return (free(buf), 1);
 		ctr++;
 		free(buf);
 	}

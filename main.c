@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 03:11:06 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/06/29 20:00:40 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,18 @@ void	print_cubed_elements(t_cubed *cubed)
 	printf("Ceiling Color (C): #%06X\n", cubed->ceiling_rgb);
 
 	printf("Map Path: %s\n", cubed->map_path ? cubed->map_path : "Not set");
-
-	// Optional: print the map if it's already parsed
-	// if (cubed->map)
-	// {
-	// 	int i = 0;
-	// 	printf("Map:\n");
-	// 	while (cubed->map[i])
-	// 	{
-	// 		printf("%s\n", cubed->map[i]);
-	// 		i++;
-	// 	}
-	// }
-	// else
-	// 	printf("Map: Not set\n");
+	if (cubed->map)
+	{
+		int i = 0;
+		printf("Map:\n");
+		while (cubed->map[i])
+		{
+			printf("%s\n", cubed->map[i]);
+			i++;
+		}
+	}
+	else
+		printf("Map: Not set\n");
 }
 //========================================== DEBUG ==========================================================
 
@@ -71,5 +69,6 @@ int main(int ac, char **av)
 	if (parsing(&cubed) == 1)
 		return (1);
 	print_cubed_elements(&cubed);
+	free_cubed(&cubed);
 	return (0);
 }
