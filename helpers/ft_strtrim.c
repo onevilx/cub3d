@@ -6,13 +6,13 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 17:26:43 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 02:18:03 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/06/29 21:06:58 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/helpers.h"
 
-static int	ft_strlen(const char	*s)
+static int	ft_trim_strlen(const char	*s)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!s1 || !set)
 		return (NULL);
 	first = 0;
-	last = ft_strlen(s1) - 1;
+	last = ft_trim_strlen(s1) - 1;
 	while (s1[first] && checkerr(set, s1[first]))
 		first++;
 	while (last >= first && checkerr(set, s1[last]))

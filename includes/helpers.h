@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 01:27:49 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 02:13:57 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/06/29 21:05:36 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
+int		ft_strlen(char	*s);
 
 #endif

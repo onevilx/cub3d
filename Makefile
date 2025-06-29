@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/06/29 19:55:35 by adechaji         ###   ########.fr        #
+#    Updated: 2025/06/29 21:07:03 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ LDFLAGS		= -LMLX42/build -ldl -lm -pthread
 
 SRC			= main.c
 
-SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c
+SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c parsing/r_map_pars.c
 
 SRC_EXEC	=
 
 SRC_HLP		= helpers/ft_strncmp.c helpers/ft_strrchr.c helpers/ft_strrchr_custom.c helpers/Get_Next_Line/get_next_line.c \
 				helpers/Get_Next_Line/get_next_line_utils.c helpers/ft_putstr_fd.c helpers/ft_atoi.c helpers/free_splited_args.c \
-				helpers/ft_old_split.c helpers/ft_memcpy.c helpers/ft_strcmp.c helpers/ft_strtrim.c helpers/ft_bzero.c helpers/ft_calloc.c
+				helpers/ft_old_split.c helpers/ft_memcpy.c helpers/ft_strcmp.c helpers/ft_strtrim.c helpers/ft_bzero.c \
+				helpers/ft_calloc.c helpers/ft_strlen.c
+
 ALL_SRC		= $(SRC) $(SRC_PARS) $(SRC_EXEC) $(SRC_HLP)
 
 OBJ			= $(ALL_SRC:.c=.o)

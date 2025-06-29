@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 20:00:21 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/06/29 22:11:40 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static int	is_map_line(char *line)
 		line++;
 	return (*line == '1');
 }
+
 
 int	r_map(t_cubed	*cubed)
 {
@@ -84,6 +85,11 @@ int	r_map(t_cubed	*cubed)
 	}
 	map = fill_map2d(map, cc + 1);
 	map[cc] = NULL;
+	int j = 0;
+	while(map[j])
+		printf("{%s}\n", map[j++]);
+	if (parse_it(map) == 0) // implement from scratch
+		return (free_splited(map), 1);
 	cubed->map = map;
 	return (0);
 }
