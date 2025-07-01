@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/06/29 21:07:03 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/01 01:58:24 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LDFLAGS		= -LMLX42/build -ldl -lm -pthread
 
 SRC			= main.c
 
-SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c parsing/r_map_pars.c
+SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c parsing/r_map_pars.c \
+				parsing/surr_walls.c
 
 SRC_EXEC	=
 

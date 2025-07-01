@@ -6,76 +6,105 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:48:54 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 21:59:49 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/01 02:01:24 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-#include "../includes/cub3d.h"
-
-static int	is_valid_char(char c)
+static int longest_line(char **map)
 {
-	return (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W' || c == ' ');
+	int	max;
+	int	i;
+
+	if (!map || !map[1])
+		return 0;
+	max = 0;
+	i = 0;
+	while (map[i])
+	{
+		if (max < ft_strlen(map[i]))
+			max = ft_strlen(map[i]);
+		i++;
+	}
+	return (max);
 }
 
-static int	count_spawn_points(char c)
+static char **mapping(char **map, int max)
+{
+	char	**copy;
+	int		i;
+	int		j;
+
+	i = ft_strlen(map[0]);
+	copy = malloc(sizeof(char *) * (i + 1));
+	if (!copy)
+		return (NULL);
+	i = -1;
+	while (map[++i])
+	{
+		copy[i] = malloc(max + 1);
+		if (!copy[i])
+			return (free_splited(copy), NULL);
+		j = -1;
+		while (map[i][++j])
+			copy[i][j] = map[i][j];
+		while (j < max)
+			copy[i][j++] = ' ';
+		copy[i][j] = '\0';
+	}
+	copy[j] = NULL;
+	return (copy);
+} 
+
+static int	spawn_p(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-static int	inside_bounds(char **map, int i, int j)
+static int	surr_check(char	**map, int i, int j)
 {
-	return (i >= 0 && map[i] && j >= 0 && j < (int)ft_strlen(map[i]));
-}
+	char	c;
 
-static int	touches_void(char **map, int i, int j)
-{
-	int	di[] = {-1, 1, 0, 0};
-	int	dj[] = {0, 0, -1, 1};
-	int	k;
-
-	k = 0;
-	while (k < 4)
+	c = map[i][j];
+	if (c == '0' || spawn_p(c))
 	{
-		int ni = i + di[k];
-		int nj = j + dj[k];
-		if (!inside_bounds(map, ni, nj) || map[ni][nj] == ' ')
-			return (1);
-		k++;
+		if (!map[i + 1] || !map[i - 1] || !map[i][j + 1] || j == 0)
+			return (0);
+		if (map[i - 1][j] == ' ' || map[i + 1][j] == ' ' ||
+			map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+			return (0);
 	}
-	return (0);
+	return (1);
 }
 
-int	validate_map(char **map)
+int	is_valid_map(char **map)
 {
-	int	i;
-	int	j;
-	int	spawn;
+	char	**copy;
+	int		i;
+	int		j;
+	int		w_max;
 
-	if (!map || !map[0])
-		return (write(2, "Error: map is empty\n", 20), 0);
-	spawn = 0;
+	w_max = longest_line(map);
+	copy = mapping(map, w_max);
+	if (!copy)
+		return (ft_putstr_fd("map copying fail\n", 2), 2);
 	i = 0;
-	while (map[i])
+	while (copy[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (copy[i][j])
 		{
-			if (!is_valid_char(map[i][j]))
-				return (write(2, "Error: invalid char in map\n", 27), 0);
-			if (count_spawn_points(map[i][j]))
-				spawn++;
-			if (map[i][j] == '0' || count_spawn_points(map[i][j]))
+			if (!surr_check(copy, i, j))
 			{
-				if (touches_void(map, i, j))
-					return (write(2, "Error: map not surrounded by walls\n", 35), 0);
+				free_splited(copy);
+				ft_putstr_fd("Map nto unclosed by walls\n", 2);
+				return (0);
 			}
 			j++;
 		}
 		i++;
 	}
-	if (spawn != 1)
-		return (write(2, "Error: map must have 1 spawn point\n", 35), 0);
+	free_splited(copy);
 	return (1);
 }

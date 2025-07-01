@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 22:11:40 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/06/30 20:18:22 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	is_map_line(char *line)
 	return (*line == '1');
 }
 
-
 int	r_map(t_cubed	*cubed)
 {
 	char	**map;
@@ -55,7 +54,7 @@ int	r_map(t_cubed	*cubed)
 			free(line);
 			continue ;
 		}
-		trim = ft_strtrim(line, " \n\t");
+		trim = ft_strtrim(line, "\n\t");
 		free(line);
 		if (!trim)
 			return (free_splited(map), 1);
@@ -78,17 +77,14 @@ int	r_map(t_cubed	*cubed)
 		line = get_next_line(cubed->map_fd);
 		if (!line)
 			break ;
-		trim = ft_strtrim(line, " \n\t");
+		trim = ft_strtrim(line, "\n\t");
 		free(line);
 		if (!trim)
 			return (free_splited(map), 1);
 	}
 	map = fill_map2d(map, cc + 1);
 	map[cc] = NULL;
-	int j = 0;
-	while(map[j])
-		printf("{%s}\n", map[j++]);
-	if (parse_it(map) == 0) // implement from scratch
+	if (parse_it(map) == 0)
 		return (free_splited(map), 1);
 	cubed->map = map;
 	return (0);
