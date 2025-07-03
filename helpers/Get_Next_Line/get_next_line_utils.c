@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 14:53:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 02:15:41 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/03 05:36:20 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_gnl_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strdup(char *s1)
+static char	*ft_strdup(char *s1)
 {
 	char	*str;
 	int		slen;

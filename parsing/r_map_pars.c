@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 20:48:31 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/30 20:19:15 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/03 11:34:06 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	parse_it(char	**map)
 		return (0);
 	if (mapelements(map) == 0)
 		return (0);
-	if (!is_valid_map(map))
+	if (is_valid_map(map) == 0)
 		return (0);
 	return (1);
 }
