@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
+#    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/04 06:48:32 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/04 11:07:29 by yaboukir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,16 @@ NAME		= cub3D
 
 CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror -Iincludes -IMLX42/include -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -Iincludes -IMLX42/include -I/mnt/homes/yaboukir/homebrew/include
 
-LDFLAGS		= -ldl -lm -pthread
+LDFLAGS		= -LMLX42/build -L/mnt/homes/yaboukir/homebrew/lib -lmlx42 -ldl -lglfw -lm -pthread
 
 SRC			= main.c
 
 SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c parsing/r_map_pars.c \
 				parsing/surr_walls.c
 
-SRC_EXEC	=
+SRC_EXEC	= raycasting/raycasting.c raycasting/init_things.c raycasting/hot_keys.c
 
 SRC_HLP		= helpers/ft_strncmp.c helpers/ft_strrchr.c helpers/ft_strrchr_custom.c helpers/Get_Next_Line/get_next_line.c \
 				helpers/Get_Next_Line/get_next_line_utils.c helpers/ft_putstr_fd.c helpers/ft_atoi.c helpers/free_splited_args.c \
@@ -39,7 +39,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
 
-%.o: %.c includes/cub3d.h includes/parsing.h
+%.o: %.c includes/cub3d.h includes/parsing.h includes/raycasting.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

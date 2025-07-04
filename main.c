@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/03 09:20:19 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:21:49 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ static void	init_cubed(t_cubed *cubed)
 	cubed->map_fd = -1;
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_cubed	cubed;
+	t_cubed		cubed;
+	t_player	player;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
 
 	init_cubed(&cubed);
 	if (ac != 2)
@@ -64,11 +67,23 @@ int main(int ac, char **av)
 		ft_putstr_fd("Error: wrong format\n", 2);
 		return (1);
 	}
-	else
-		cubed.map_path = av[1];
+	cubed.map_path = av[1];
 	if (parsing(&cubed) == 1)
 		return (1);
 	print_cubed_elements(&cubed);
+	init_player(&player, cubed.map);
+	mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	if (!mlx)
+		return (printf("Error initializing MLX\n"), 1);
+	img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	if (!img)
+		return (printf("Error creating image\n"), 1);
+	draw_minimap(img, &cubed, &player);
+	mlx_image_to_window(mlx, img, 0, 0);
+	t_game game = {&cubed, &player, img, mlx};
+	mlx_key_hook(mlx, key_handler, &game);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
 	free_cubed(&cubed);
 	return (0);
 }
