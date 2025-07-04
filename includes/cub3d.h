@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:29:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 02:42:39 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/03 23:32:09 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,18 @@ typedef struct cubed
 	int		map_fd;
 }	t_cubed;
 
+typedef struct s_player 
+{
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+}	t_player;
+
 # include "parsing.h"
 # include "helpers.h"
+# include "raycasting.h"
 
 #endif
