@@ -6,13 +6,13 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 02:16:23 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 02:17:32 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/03 05:37:13 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/helpers.h"
 
-int	ft_strlen(char	*s)
+int	ft_strlen(const char	*s)
 {
 	int	i;
 

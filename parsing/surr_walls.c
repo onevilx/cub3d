@@ -6,105 +6,88 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 21:48:54 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/01 02:01:24 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:11:09 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int longest_line(char **map)
+static int safe_strlen(char *str)
 {
-	int	max;
-	int	i;
-
-	if (!map || !map[1])
-		return 0;
-	max = 0;
-	i = 0;
-	while (map[i])
-	{
-		if (max < ft_strlen(map[i]))
-			max = ft_strlen(map[i]);
-		i++;
-	}
-	return (max);
+    if (!str)
+        return (0);
+    return ((int)ft_strlen(str));
 }
 
-static char **mapping(char **map, int max)
+static int inside_bounds(char **map, int i, int j)
 {
-	char	**copy;
-	int		i;
-	int		j;
-
-	i = ft_strlen(map[0]);
-	copy = malloc(sizeof(char *) * (i + 1));
-	if (!copy)
-		return (NULL);
-	i = -1;
-	while (map[++i])
-	{
-		copy[i] = malloc(max + 1);
-		if (!copy[i])
-			return (free_splited(copy), NULL);
-		j = -1;
-		while (map[i][++j])
-			copy[i][j] = map[i][j];
-		while (j < max)
-			copy[i][j++] = ' ';
-		copy[i][j] = '\0';
-	}
-	copy[j] = NULL;
-	return (copy);
-} 
-
-static int	spawn_p(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+    if (i < 0 || j < 0)
+        return (0);
+    if (!map[i])
+        return (0);
+    if (j >= safe_strlen(map[i]))
+        return (0);
+    return (1);
 }
 
-static int	surr_check(char	**map, int i, int j)
+static int is_walkable(char c)
 {
-	char	c;
-
-	c = map[i][j];
-	if (c == '0' || spawn_p(c))
-	{
-		if (!map[i + 1] || !map[i - 1] || !map[i][j + 1] || j == 0)
-			return (0);
-		if (map[i - 1][j] == ' ' || map[i + 1][j] == ' ' ||
-			map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
-			return (0);
-	}
-	return (1);
+    return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-int	is_valid_map(char **map)
+static int touches_void(char **map, int i, int j)
 {
-	char	**copy;
-	int		i;
-	int		j;
-	int		w_max;
+    int di[4] = {-1, 1, 0, 0};
+    int dj[4] = {0, 0, -1, 1};
+    int k;
+    int ni;
+    int nj;
 
-	w_max = longest_line(map);
-	copy = mapping(map, w_max);
-	if (!copy)
-		return (ft_putstr_fd("map copying fail\n", 2), 2);
-	i = 0;
-	while (copy[i])
+    for (k = 0; k < 4; k++)
+    {
+        ni = i + di[k];
+        nj = j + dj[k];
+        if (!inside_bounds(map, ni, nj))
+            return (1);
+        if (map[ni][nj] == ' ')
+            return (1);
+    }
+    return (0);
+}
+
+static int	norm_map(char **map, int i, int j)
+{
+	if (is_walkable(map[i][j]))
 	{
-		j = 0;
-		while (copy[i][j])
+		if (touches_void(map, i, j))
 		{
-			if (!surr_check(copy, i, j))
-			{
-				free_splited(copy);
-				ft_putstr_fd("Map nto unclosed by walls\n", 2);
-				return (0);
-			}
-			j++;
+			write(2, "Error: map not surrounded by walls\n", 35);
+			return (1);
 		}
-		i++;
 	}
-	free_splited(copy);
-	return (1);
+	return (0);
+}
+int is_valid_map(char **map)
+{
+    int i;
+    int j;
+
+    if (!map || !map[0])
+    {
+        write(2, "Error: map is empty\n", 20);
+        return (0);
+    }
+    i = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (norm_map(map, i, j) == 1)
+				return (0);
+            j++;
+        }
+        i++;
+    }
+    return (1);
 }
