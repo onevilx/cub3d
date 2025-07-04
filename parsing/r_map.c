@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/03 06:41:44 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:33:46 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ static char	**grow_map_array(char **old, int new_size)
 		free(old);
 	return (new);
 }
+
 static int	is_map_line(char *line)
 {
 	while (*line && (*line == ' ' || *line == '\t'))
 		line++;
 	return (*line == '1');
 }
+
 static int	validate_and_store_map(t_cubed *cubed, char **map)
 {
 	if (parse_it(map) == 0)
@@ -52,15 +54,39 @@ static int	validate_and_store_map(t_cubed *cubed, char **map)
 	return (0);
 }
 
-int	r_map(t_cubed *cubed)
+static char	**r_map__(t_cubed *cubed, char *trimmed)
 {
-	char	*line;
-	char	*trimmed;
 	char	**map;
+	char	*line;
 	int		count;
 
 	map = NULL;
 	count = 0;
+	while (1)
+	{
+		map = grow_map_array(map, count + 1);
+		if (!map)
+			return (free(trimmed), NULL);
+		map[count++] = trimmed;
+		map[count] = NULL;
+		line = get_next_line(cubed->map_fd);
+		if (!line)
+			break ;
+		trimmed = ft_strtrim(line, "\n\t");
+		free(line);
+		if (!trimmed || !is_map_line(trimmed))
+			return (free(trimmed), free_splited(map), NULL);
+	}
+	return (map);
+}
+
+int	r_map(t_cubed *cubed)
+{
+	char	**map;
+	char	*line;
+	char	*trimmed;
+
+	map = NULL;
 	line = get_next_line(cubed->map_fd);
 	while (line != NULL && is_emptyl(line))
 	{
@@ -72,21 +98,9 @@ int	r_map(t_cubed *cubed)
 	trimmed = ft_strtrim(line, "\n\t");
 	free(line);
 	if (!trimmed || !is_map_line(trimmed))
-		return (free(trimmed), free_splited(map), 1);
-	while (1)
-	{
-		map = grow_map_array(map, count + 1);
-		if (!map)
-			return (free(trimmed), 1);
-		map[count++] = trimmed;
-		map[count] = NULL;
-		line = get_next_line(cubed->map_fd);
-		if (!line)
-			break ;
-		trimmed = ft_strtrim(line, "\n\t");
-		free(line);
-		if (!trimmed || !is_map_line(trimmed))
-			return (free(trimmed), free_splited(map), 1);
-	}
+		return (ft_putstr_fd("Error\n", 2), free(trimmed), 1);
+	map = r_map__(cubed, trimmed);
+	if (!map)
+		return (ft_putstr_fd("Map creation failed\n", 2), 1);
 	return (validate_and_store_map(cubed, map));
 }

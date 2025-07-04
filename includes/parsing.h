@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:25:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/01 01:59:44 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:05:57 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,8 @@ int		is_emptyl(char *str);
 void	free_cubed(t_cubed *cubed);
 int		parse_it(char	**map);
 int		is_valid_map(char **map);
+int     valid_path(char *path);
+int     valid_color(char *str, int *clr);
+char	*valid_tex_path(char *arg);
+
 #endif

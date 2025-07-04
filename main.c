@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/04 12:21:49 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:43:16 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 	}
 	cubed.map_path = av[1];
 	if (parsing(&cubed) == 1)
-		return (1);
+		return (free_cubed(&cubed), 1);
 	print_cubed_elements(&cubed);
 	init_player(&player, cubed.map);
 	mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
