@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/03 06:41:44 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 10:24:15 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,14 @@ static char	**grow_map_array(char **old, int new_size)
 		free(old);
 	return (new);
 }
+
 static int	is_map_line(char *line)
 {
 	while (*line && (*line == ' ' || *line == '\t'))
 		line++;
 	return (*line == '1');
 }
+
 static int	validate_and_store_map(t_cubed *cubed, char **map)
 {
 	if (parse_it(map) == 0)

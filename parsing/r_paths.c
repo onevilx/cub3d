@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 00:35:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/03 14:23:49 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 07:10:41 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	valid_path(char *path)
 {
 	int		fd;
-	
+
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		return (1);
@@ -111,7 +111,7 @@ int	r_paths(t_cubed	*cubed)
 	int		ctr;
 
 	ctr = 0;
-	while (ctr < 6) // nigger while
+	while (ctr < 6)
 	{
 		buf = get_next_line(cubed->map_fd);
 		if (!buf)
@@ -121,7 +121,6 @@ int	r_paths(t_cubed	*cubed)
 			free(buf);
 			continue ;
 		}
-		// printf("%s", buf);
 		if (pars_paths(cubed, buf) != 0)
 			return (free(buf), 1);
 		ctr++;

@@ -6,26 +6,27 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:48:02 by adechaji          #+#    #+#             */
-/*   Updated: 2025/06/29 22:04:13 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 07:16:56 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int valid_ext(char *stmap)
+static int	valid_ext(char *stmap)
 {
 	char	*tmp;
 
 	if (!stmap)
 		return (1);
 	tmp = ft_strrchr_custom(stmap, '.');
-	if(tmp && ft_strncmp(tmp, ".cub", 5) != 0)
+	if (tmp && ft_strncmp(tmp, ".cub", 5) != 0)
 	{
 		ft_putstr_fd("Invalid map extention\n", 2);
 		return (1);
 	}
 	return (0);
 }
+
 static void	set_some(t_cubed *cubed)
 {
 	cubed->ceiling_rgb = -1;

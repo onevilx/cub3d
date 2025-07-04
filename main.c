@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/03 09:20:19 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 06:57:26 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,13 @@ static void	init_cubed(t_cubed *cubed)
 	cubed->map_path = NULL;
 	cubed->map_fd = -1;
 }
-
+void	f()
+{
+	system("leaks cub3D");
+}
 int main(int ac, char **av)
 {
+	atexit(f);
 	t_cubed	cubed;
 
 	init_cubed(&cubed);
@@ -67,7 +71,7 @@ int main(int ac, char **av)
 	else
 		cubed.map_path = av[1];
 	if (parsing(&cubed) == 1)
-		return (1);
+		return (free_cubed(&cubed), 1);
 	print_cubed_elements(&cubed);
 	free_cubed(&cubed);
 	return (0);

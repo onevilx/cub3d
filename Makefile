@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/04 06:48:32 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/04 06:54:30 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= cub3D
 
 CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror -Iincludes -IMLX42/include -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -Iincludes -IMLX42/include -g #-fsanitize=address
 
 LDFLAGS		= -ldl -lm -pthread
 
