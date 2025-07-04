@@ -6,40 +6,72 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 00:35:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/04 07:10:41 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:30:48 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	valid_path(char *path)
+int	is_color(t_cubed *cubed, char *str, char *arg)
 {
-	int		fd;
-
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	close(fd);
+	if (ft_strcmp(str, "F") == 0)
+	{
+		if (cubed->floor_rgb != -1
+			|| valid_color(arg, &cubed->floor_rgb) == 1)
+			return (1);
+	}
+	if (ft_strcmp(str, "C") == 0)
+	{
+		if (cubed->ceiling_rgb != -1
+			|| valid_color(arg, &cubed->ceiling_rgb) == 1)
+			return (1);
+	}
 	return (0);
 }
 
-static int	valid_color(char *str, int *clr)
+int	is_texture(t_cubed *cubed, char *str, char *arg)
 {
-	char	**rgb;
-	int		r;
-	int		g;
-	int		b;
+	if (ft_strcmp(str, "NO") == 0 && !cubed->no_path)
+	{
+		cubed->no_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "SO") == 0 && !cubed->so_path)
+	{
+		cubed->so_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "WE") == 0 && !cubed->we_path)
+	{
+		cubed->we_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "EA") == 0 && !cubed->ea_path)
+	{
+		cubed->ea_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	return (0);
+}
 
-	rgb = ft_old_split(str, ',');
-	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
+static int	what_is_it(char *str)
+{
+	if (ft_strcmp(str, "NO") == 0)
 		return (1);
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[2]);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	if (ft_strcmp(str, "SO") == 0)
 		return (1);
-	*clr = (r << 16) | (g << 8) | b;
-	free_splited(rgb);
+	if (ft_strcmp(str, "WE") == 0)
+		return (1);
+	if (ft_strcmp(str, "EA") == 0)
+		return (1);
+	if (ft_strcmp(str, "F") == 0)
+		return (2);
+	if (ft_strcmp(str, "C") == 0)
+		return (2);
 	return (0);
 }
 
@@ -54,49 +86,15 @@ static int	pars_paths(t_cubed *cubed, char *buf)
 	arg = ft_strtrim(splited[1], " \n\t");
 	if (!arg)
 		return (free_splited(splited), 1);
-	if (ft_strcmp(splited[0], "NO") == 0)
+	if (what_is_it(splited[0]) == 1)
 	{
-		if (cubed->no_path || valid_path(arg) == 1)
-			return (free(arg), free_splited(splited), 1);
-		cubed->no_path = ft_strdup(arg);
-		if (!cubed->no_path)
+		if (is_texture(cubed, splited[0], arg) == 1)
 			return (free(arg), free_splited(splited), 1);
 	}
-	else if (ft_strcmp(splited[0], "SO") == 0)
+	else if (what_is_it(splited[0]) == 2)
 	{
-		if (cubed->so_path || valid_path(arg) == 1)
+		if (is_color(cubed, splited[0], arg) == 1)
 			return (free(arg), free_splited(splited), 1);
-		cubed->so_path = ft_strdup(arg);
-		if (!cubed->so_path)
-			return (free(arg), free_splited(splited), 1);
-	}
-	else if (ft_strcmp(splited[0], "WE") == 0)
-	{
-		if (cubed->we_path || valid_path(arg) == 1)
-			return (free(arg), free_splited(splited), 1);
-		cubed->we_path = ft_strdup(arg);
-		if (!cubed->we_path)
-			return (free(arg), free_splited(splited), 1);
-	}
-	else if (ft_strcmp(splited[0], "EA") == 0)
-	{
-		if (cubed->ea_path || valid_path(arg) == 1)
-			return (free(arg), free_splited(splited), 1);
-		cubed->ea_path = ft_strdup(arg);
-		if (!cubed->ea_path)
-			return (free(arg), free_splited(splited), 1);
-	}
-	else if (ft_strcmp(splited[0], "F") == 0)
-	{
-		if (cubed->f_set != 0 || valid_color(arg, &cubed->floor_rgb) == 1)
-			return (free(arg), free_splited(splited), 1);
-		cubed->f_set = 1;
-	}
-	else if (ft_strcmp(splited[0], "C") == 0)
-	{
-		if (cubed->c_set != 0 || valid_color(arg, &cubed->ceiling_rgb) == 1)
-			return (free(arg), free_splited(splited), 1);
-		cubed->c_set = 1;
 	}
 	else
 		return (free(arg), free_splited(splited), 1);

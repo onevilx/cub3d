@@ -6,18 +6,11 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 07:02:22 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/04 07:10:01 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:35:53 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-static int	safe_strlen(char *str)
-{
-	if (!str)
-		return (0);
-	return ((int)ft_strlen(str));
-}
 
 static int	inside_bounds(char **map, int i, int j)
 {
@@ -25,7 +18,7 @@ static int	inside_bounds(char **map, int i, int j)
 		return (0);
 	if (!map[i])
 		return (0);
-	if (j >= safe_strlen(map[i]))
+	if (j >= ft_strlen(map[i]))
 		return (0);
 	return (1);
 }

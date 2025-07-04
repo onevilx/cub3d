@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:48:02 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/04 07:16:56 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:33:13 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ static int	valid_ext(char *stmap)
 
 	if (!stmap)
 		return (1);
-	tmp = ft_strrchr_custom(stmap, '.');
+	tmp = ft_strrchr(stmap, '.');
+	if (!tmp)
+		return (ft_putstr_fd("Invalid map extention\n", 2), 1);
 	if (tmp && ft_strncmp(tmp, ".cub", 5) != 0)
 	{
 		ft_putstr_fd("Invalid map extention\n", 2);
@@ -45,7 +47,7 @@ int	parsing(t_cubed	*cubed)
 	}
 	set_some(cubed);
 	if (r_paths(cubed) == 1)
-		return (ft_putstr_fd("Error invalid paths or colors\n", 2), 1);
+		return (ft_putstr_fd("Error\n", 2), 1);
 	if (r_map(cubed) == 1)
 		return (1);
 	return (printf("success\n"), 0);
