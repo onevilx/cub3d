@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hot_keys.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/04 12:38:12 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/05 20:33:40 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void	player_move(mlx_key_data_t keydata, t_game *game)
 		ifis_w_or_s(keydata, game);
 	else if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
 		ifis_a_or_d(keydata, game);
+	else if (keydata.key == MLX_KEY_LEFT)
+		rotate_player(game->player, -ROT_SPEED);
+	else if (keydata.key == MLX_KEY_RIGHT)
+		rotate_player(game->player, ROT_SPEED);
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->mlx);
 }
@@ -100,6 +104,7 @@ void	key_handler(mlx_key_data_t keydata, void *param)
 	player_move(keydata, game);
 	mlx_delete_image(game->mlx, game->img);
 	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	draw_minimap(game->img, game->cubed, game->player);
+	// draw_minimap(game->img, game->cubed, game->player); // dont delete this akha adil hh need it in bonus for minimap .
+	render_3d_view(game->img, game->player, game->cubed);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }

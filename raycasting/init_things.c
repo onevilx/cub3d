@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   init_things.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:41:46 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/04 12:39:40 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/05 20:23:41 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
+
+void	init_game(t_game *game, t_cubed *cubed, t_player *player, mlx_image_t *img, mlx_t *mlx)
+{
+	game->cubed = cubed;
+	game->player = player;
+	game->img = img;
+	game->mlx = mlx;
+}
+
+void	init_ray_vars(t_player *p, int x, double *camera_x,
+		double *ray_dir_x, double *ray_dir_y)
+{
+	*camera_x = 2 * x / (double)WIDTH - 1;
+	*ray_dir_x = p->dir_x + p->plane_x * (*camera_x);
+	*ray_dir_y = p->dir_y + p->plane_y * (*camera_x);
+}
+
+void	rotate_player(t_player *p, double angle)
+{
+	double	old_dir_x = p->dir_x;
+	double	old_plane_x = p->plane_x;
+
+	p->dir_x = p->dir_x * cos(angle) - p->dir_y * sin(angle);
+	p->dir_y = old_dir_x * sin(angle) + p->dir_y * cos(angle);
+
+	p->plane_x = p->plane_x * cos(angle) - p->plane_y * sin(angle);
+	p->plane_y = old_plane_x * sin(angle) + p->plane_y * cos(angle);
+	printf("%f\n", angle);
+}
 
 void	init_player(t_player *player, char **map)
 {
@@ -118,7 +147,7 @@ void	draw_player(mlx_image_t *img, t_player *player)
 			draw_x = px + x;
 			draw_y = py + y;
 			if (draw_x >= 0 && draw_y >= 0 && draw_x < width && draw_y < height)
-				pixels[draw_y * width + draw_x] = 0xFF0000FF; // Red color
+				pixels[draw_y * width + draw_x] = 0xFF0000FF;
 			x++;
 		}
 		y++;

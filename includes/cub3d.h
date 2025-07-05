@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:29:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/04 12:36:12 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/05 16:50:20 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,23 @@ typedef struct s_player
 	double	plane_x;
 	double	plane_y;
 }	t_player;
+
+typedef struct s_dda
+{
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	double	side_x;
+	double	side_y;
+	double	delta_x;
+	double	delta_y;
+	int		hit;
+	int		side;
+	double	ray_dir_x;
+	double	ray_dir_y;
+}	t_dda;
+
 
 typedef struct s_game
 {
