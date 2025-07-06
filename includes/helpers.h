@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 01:27:49 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/03 05:37:37 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/07 00:25:04 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 int		ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
+int	    ft_isdigit(int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:49:25 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/04 12:31:01 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/07 00:29:09 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,6 @@ int	valid_path(char *path)
 	return (0);
 }
 
-int	valid_color(char *str, int *clr)
-{
-	char	**rgb;
-	int		r;
-	int		g;
-	int		b;
-
-	rgb = ft_old_split(str, ',');
-	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2] || rgb[3])
-		return (1);
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[2]);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (1);
-	*clr = (r << 16) | (g << 8) | b;
-	free_splited(rgb);
-	return (0);
-}
-
 char	*valid_tex_path(char *arg)
 {
 	char	*path;
@@ -69,4 +49,33 @@ char	*valid_tex_path(char *arg)
 	if (!path)
 		return (NULL);
 	return (path);
+}
+
+int	is_texture(t_cubed *cubed, char *str, char *arg)
+{
+	if (ft_strcmp(str, "NO") == 0 && !cubed->no_path)
+	{
+		cubed->no_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "SO") == 0 && !cubed->so_path)
+	{
+		cubed->so_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "WE") == 0 && !cubed->we_path)
+	{
+		cubed->we_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "EA") == 0 && !cubed->ea_path)
+	{
+		cubed->ea_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	return (0);
 }
