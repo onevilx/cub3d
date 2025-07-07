@@ -6,7 +6,7 @@
 /*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/05 20:33:40 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:45:23 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,8 @@ void	key_handler(mlx_key_data_t keydata, void *param)
 
 	game = (t_game *)param;
 	player_move(keydata, game);
-	mlx_delete_image(game->mlx, game->img);
-	game->img = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	// draw_minimap(game->img, game->cubed, game->player); // dont delete this akha adil hh need it in bonus for minimap .
+	ft_memset(game->img->pixels, 0, WIDTH * HEIGHT * sizeof(uint32_t));
+	// draw_minimap(game->img, game->cubed, game->player);
 	render_3d_view(game->img, game->player, game->cubed);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }
+

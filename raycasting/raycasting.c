@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:36:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/07 16:39:10 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:16:15 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static void	draw_wall(mlx_image_t *img, int x, t_dda *dda,
 	int		end;
 	int		y;
 
-	(void)cubed; // ghadi nkhdmo biha mn b3d ana kantesti with coloring, mn b3d ghatwdzha b textures
 	if (dda->side == 0)
 		dist = (dda->map_x - p->pos_x + (1 - dda->step_x) / 2)
 			/ dda->ray_dir_x;

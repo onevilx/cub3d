@@ -6,7 +6,7 @@
 /*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:41:46 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/05 20:23:41 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:33:53 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	rotate_player(t_player *p, double angle)
 
 	p->plane_x = p->plane_x * cos(angle) - p->plane_y * sin(angle);
 	p->plane_y = old_plane_x * sin(angle) + p->plane_y * cos(angle);
-	printf("%f\n", angle);
 }
 
 void	init_player(t_player *player, char **map)

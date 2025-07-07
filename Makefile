@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/07 17:50:04 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/07 18:17:33 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,14 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -Iincludes -IMLX42/include -I/mnt/homes/$(USER)/brew/include -g -fsanitize=address
 
-LDFLAGS		= -LMLX42/build -L/mnt/homes/$(USER)/brew/lib -lmlx42 -ldl -lglfw -lm -pthread
+LDFLAGS		= -LMLX42/build -L/mnt/homes/$(USER)/homebrew/lib -lmlx42 -ldl -lglfw -lm -pthread
 
 SRC			= main.c
 
 SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c parsing/helper_2.c parsing/r_map_pars.c \
 				parsing/surr_walls.c padding/texture_rend.c
 
-SRC_EXEC	= raycasting/raycasting.c raycasting/init_things.c raycasting/hot_keys.c
+SRC_EXEC	= raycasting/raycasting.c raycasting/init_things.c raycasting/hot_keys.c raycasting/ft_helpers1.c
 
 SRC_HLP		= helpers/ft_strncmp.c helpers/ft_strrchr.c helpers/ft_strrchr_custom.c helpers/Get_Next_Line/get_next_line.c \
 				helpers/Get_Next_Line/get_next_line_utils.c helpers/ft_putstr_fd.c helpers/ft_atoi.c helpers/free_splited_args.c \

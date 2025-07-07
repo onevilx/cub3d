@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/07 13:59:46 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:37:30 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 # define TILE_SIZE 30
 # define PLAYER_DRAW_SIZE 35
-# define WIDTH 1000
-# define HEIGHT 500
+# define WIDTH 1920
+# define HEIGHT 1080
 # define ROT_SPEED 0.15
 # define MOVE_SPEED 0.30
 
@@ -31,6 +31,7 @@ void	draw_square(mlx_image_t *img, int x, int y, uint32_t color);
 void	key_handler(mlx_key_data_t keydata, void *param);
 void	draw_player(mlx_image_t *img, t_player *player);
 void	init_player(t_player *player, char **map);
+void	*ft_memset(void *b, int c, size_t len);
 void	rotate_player(t_player *p, double angle);
 
 #endif
