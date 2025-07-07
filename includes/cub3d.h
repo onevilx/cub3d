@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:29:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/05 16:50:20 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/07 06:39:41 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@
 # include "MLX42/MLX42.h"	 // MLX42 library
 # include "../helpers/Get_Next_Line/get_next_line.h"
 
+typedef struct s_textr
+{
+	mlx_texture_t *no;
+	mlx_texture_t *so;
+	mlx_texture_t *we;
+	mlx_texture_t *ea;
+} t_textr;
+
 typedef struct cubed
 {
 	char	*no_path;		//north_path
@@ -36,6 +44,7 @@ typedef struct cubed
 	char	**map;
 	char	*map_path;
 	int		map_fd;
+	t_textr	textr;
 }	t_cubed;
 
 typedef struct s_player

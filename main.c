@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/05 20:01:35 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/07 06:49:10 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ int	main(int ac, char **av)
 	mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (!mlx)
 		return (printf("Error initializing MLX\n"), 1);
+	if (!load_textures(&cubed))
+	{
+		free_textures(&cubed);
+		//more checks
+		exit(1);
+	}
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!img)
 		return (printf("Error creating image\n"), 1);
