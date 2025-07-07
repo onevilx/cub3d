@@ -6,7 +6,7 @@
 /*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/05 20:21:16 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:43:34 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	draw_square(mlx_image_t *img, int x, int y, uint32_t color);
 void	key_handler(mlx_key_data_t keydata, void *param);
 void	draw_player(mlx_image_t *img, t_player *player);
 void	init_player(t_player *player, char **map);
+void	*ft_memset(void *b, int c, size_t len);
 void	rotate_player(t_player *p, double angle);
 
 #endif

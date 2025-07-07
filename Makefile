@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
+#    By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/04 12:43:00 by yaboukir         ###   ########.fr        #
+#    Updated: 2025/07/07 16:46:00 by onevil_x         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC			= main.c
 SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c parsing/r_map_pars.c \
 				parsing/surr_walls.c
 
-SRC_EXEC	= raycasting/raycasting.c raycasting/init_things.c raycasting/hot_keys.c
+SRC_EXEC	= raycasting/raycasting.c raycasting/init_things.c raycasting/hot_keys.c raycasting/ft_helpers1.c
 
 SRC_HLP		= helpers/ft_strncmp.c helpers/ft_strrchr.c helpers/ft_strrchr_custom.c helpers/Get_Next_Line/get_next_line.c \
 				helpers/Get_Next_Line/get_next_line_utils.c helpers/ft_putstr_fd.c helpers/ft_atoi.c helpers/free_splited_args.c \
