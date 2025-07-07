@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:25:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 00:04:12 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:40:38 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int     valid_path(char *path);
 int     valid_color(char *str, int *clr);
 char	*valid_tex_path(char *arg);
 int     is_texture(t_cubed *cubed, char *str, char *arg);
+int 	load_textures(t_cubed *cubed);
+void	free_textures(t_cubed *cubed);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/07 00:30:54 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/07 06:57:53 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,14 @@ NAME		= cub3D
 
 CC			= cc
 
-CFLAGS		= -Wall -Wextra -Werror -Iincludes -IMLX42/include -I/mnt/homes/$(USER)/homebrew/include
+CFLAGS		= -Wall -Wextra -Werror -Iincludes -IMLX42/include -I/mnt/homes/$(USER)/brew/include
 
-LDFLAGS		= -LMLX42/build -L/mnt/homes/$(USER)/homebrew/lib -lmlx42 -ldl -lglfw -lm -pthread
+LDFLAGS		= -LMLX42/build -L/mnt/homes/$(USER)/brew/lib -lmlx42 -ldl -lglfw -lm -pthread
 
 SRC			= main.c
 
 SRC_PARS	= parsing/parsing.c parsing/r_paths.c parsing/r_map.c parsing/cleanup.c parsing/helper_1.c parsing/helper_2.c parsing/r_map_pars.c \
-				parsing/surr_walls.c
+				parsing/surr_walls.c padding/texture_rend.c
 
 SRC_EXEC	= raycasting/raycasting.c raycasting/init_things.c raycasting/hot_keys.c
 

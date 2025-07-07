@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:36:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/05 20:23:29 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/07 16:39:10 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ static void	draw_wall(mlx_image_t *img, int x, t_dda *dda,
 		end = HEIGHT - 1;
 	y = 0;
 	while (y < start)
-		mlx_put_pixel(img, x, y++, 0x0000FFFF);
+		mlx_put_pixel(img, x, y++, cubed->ceiling_rgb);
 	while (y <= end)
-		mlx_put_pixel(img, x, y++, 0xFF0000FF);
+		mlx_put_pixel(img, x, y++, 0x0000F0FF);
 	while (y < HEIGHT)
-		mlx_put_pixel(img, x, y++, 0xFFFFFFFF);
+		mlx_put_pixel(img, x, y++, cubed->floor_rgb);
 }
 
 void	render_3d_view(mlx_image_t *img, t_player *p, t_cubed *cubed)
