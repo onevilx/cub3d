@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 06:49:10 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:52:40 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ int	main(int ac, char **av)
 	mlx_key_hook(mlx, key_handler, &game);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	free_cubed(&cubed);
+	// free_cubed(&cubed);
 	return (0);
 }

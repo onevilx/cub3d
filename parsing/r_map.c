@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 16:44:40 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:57:29 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ static char	**r_map__(t_cubed *cubed, char *trimmed)
 	char	**map;
 	char	*line;
 	int		count;
+	int		flag;
 
 	map = NULL;
 	count = 0;
+	flag = 0;
 	while (1)
 	{
 		map = grow_map_array(map, count + 1);
@@ -72,10 +74,21 @@ static char	**r_map__(t_cubed *cubed, char *trimmed)
 		line = get_next_line(cubed->map_fd);
 		if (!line)
 			break ;
-		trimmed = ft_strtrim(line, "\n\t");
+		if (is_emptyl(line))
+		{
+			flag = 1;
+			free(line);
+			continue ;
+		}
+		if (flag)
+		{
+			free(line);
+			return (NULL);
+		}
+		trimmed = ft_strtrim(line, "\n");
 		free(line);
-		if (!trimmed || !is_map_line(trimmed))
-			return (free(trimmed), free_splited(map), NULL);
+		if (!trimmed)
+			return (free_splited(map), NULL);
 	}
 	return (map);
 }
