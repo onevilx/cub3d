@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:36:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/07 17:16:15 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:02:51 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,42 @@ static void	draw_wall(mlx_image_t *img, int x, t_dda *dda,
 	y = 0;
 	while (y < start)
 		mlx_put_pixel(img, x, y++, cubed->ceiling_rgb);
-	while (y <= end)
-		mlx_put_pixel(img, x, y++, 0x0000F0FF);
+	if (y <= end)
+	{
+		mlx_texture_t *tex;
+		uint32_t	clr;
+		double 		wall_x;
+		double		step;
+		double		tex_pos;
+		int			tex_x;
+		int			tex_y;
+		
+	
+		if (dda->side == 0)
+			tex = (dda->ray_dir_x > 0) ? cubed->textr.ea : cubed->textr.we;
+		else
+			tex = (dda->ray_dir_y > 0) ? cubed->textr.so : cubed->textr.no;
+		if (dda->side == 0)
+			wall_x = p->pos_y + dist * dda->ray_dir_y;
+		else
+			wall_x = p->pos_x + dist * dda->ray_dir_x;
+		wall_x -= floor(wall_x);
+		tex_x = (int)(wall_x * (double)tex->width);
+		if ((dda->side == 0 && dda->ray_dir_x > 0) || (dda->side == 1 && dda->ray_dir_y < 0))
+			tex_x = tex->width - tex_x - 1;
+		step = 1.0 * tex->height / height;
+		tex_pos = (start - HEIGHT / 2 + height / 2) * step;
+		while (y <= end)
+		{
+			tex_y = (int)tex_pos & (tex->height - 1);
+			tex_pos += step;
+			clr = tex_clr_finder(tex, tex_x, tex_y);
+			mlx_put_pixel(img, x, y, clr);
+			y++;
+		}
+	}
+	// while (y <= end)
+	// 	mlx_put_pixel(img, x, y++, 0x0000F0FF);
 	while (y < HEIGHT)
 		mlx_put_pixel(img, x, y++, cubed->floor_rgb);
 }

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 06:40:10 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 16:38:44 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:02:03 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,10 @@ void	free_textures(t_cubed *cubed)
 		mlx_delete_texture(cubed->textr.ea);
 }
 
+uint32_t	tex_clr_finder(mlx_texture_t *tex, int x, int y)
+{
+	uint8_t	*pix;
+
+	pix = &tex->pixels[(y * tex->width + x) * 4];
+	return ((pix[0] << 24) | (pix[1] << 16) | (pix[2] << 8) | pix[3]);
+}

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:25:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 16:40:38 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/08 12:02:13 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*valid_tex_path(char *arg);
 int     is_texture(t_cubed *cubed, char *str, char *arg);
 int 	load_textures(t_cubed *cubed);
 void	free_textures(t_cubed *cubed);
+uint32_t	tex_clr_finder(mlx_texture_t *tex, int x, int y);
 
 #endif
