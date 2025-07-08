@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 17:52:40 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/09 00:54:43 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 	// draw_minimap(img, &cubed, &player);
 	render_3d_view(img, &player, &cubed);
 	mlx_image_to_window(mlx, img, 0, 0);
-	mlx_key_hook(mlx, key_handler, &game);
+	mlx_loop_hook(mlx, game_loop, &game);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	// free_cubed(&cubed);

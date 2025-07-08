@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/07 17:37:30 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/09 00:54:59 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	init_ray_vars(t_player *p, int x, double *camera_x,
 void	render_3d_view(mlx_image_t *img, t_player *player, t_cubed *cubed);
 void	draw_minimap(mlx_image_t *img, t_cubed *cubed, t_player *player);
 void	draw_square(mlx_image_t *img, int x, int y, uint32_t color);
-void	key_handler(mlx_key_data_t keydata, void *param);
+void	game_loop(void *param);
 void	draw_player(mlx_image_t *img, t_player *player);
 void	init_player(t_player *player, char **map);
 void	*ft_memset(void *b, int c, size_t len);
