@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 00:28:49 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 16:40:05 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:45:47 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,16 @@ int	valid_color(char *str, int *clr)
 		return (1);
 	*clr = (r << 24) | (g << 16) | (b << 8) | 255;
 	free_splited(rgb);
+	return (0);
+}
+
+int	valid_storeit(t_cubed *cubed, char **map)
+{
+	if (parse_it(map) == 0)
+	{
+		free_splited(map);
+		return (1);
+	}
+	cubed->map = map;
 	return (0);
 }

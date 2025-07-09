@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:36:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 01:54:40 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:43:06 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,9 @@ static void	draw_wall(mlx_image_t *img, int x, t_dda *dda,
 		tex_pos = (start - HEIGHT / 2 + height / 2) * step;
 		while (y <= end)
 		{
-			tex_y = (int)tex_pos & (tex->height - 1);
+			tex_y = (int)tex_pos;
+			if (tex_y >= (int)tex->height)
+    			tex_y = tex->height - 1;
 			tex_pos += step;
 			clr = tex_clr_finder(tex, tex_x, tex_y);
 			mlx_put_pixel(img, x, y, clr);

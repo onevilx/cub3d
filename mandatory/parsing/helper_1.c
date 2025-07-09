@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:49:25 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 09:45:17 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:04:37 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ int	valid_path(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		printf("failed to open file path : [%s]\n", path);
 		return (1);
-	}
 	close(fd);
 	return (0);
 }

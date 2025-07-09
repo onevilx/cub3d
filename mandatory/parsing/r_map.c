@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/07 17:57:29 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/09 11:58:06 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,33 @@ static int	is_map_line(char *line)
 	return (*line == '1');
 }
 
-static int	validate_and_store_map(t_cubed *cubed, char **map)
+static char	*full_valids(t_cubed *cubed, int *flag)
 {
-	if (parse_it(map) == 0)
+	char	*line;
+	char	*trimmed;
+
+	line = get_next_line(cubed->map_fd);
+	if (!line)
+		return (NULL);
+	if (is_emptyl(line))
 	{
-		free_splited(map);
-		return (1);
+		*flag = 1;
+		free(line);
+		return (full_valids(cubed, flag));
 	}
-	cubed->map = map;
-	return (0);
+	if (*flag)
+	{
+		free(line);
+		return (NULL);
+	}
+	trimmed = ft_strtrim(line, "\n");
+	free(line);
+	return (trimmed);
 }
 
 static char	**r_map__(t_cubed *cubed, char *trimmed)
 {
 	char	**map;
-	char	*line;
 	int		count;
 	int		flag;
 
@@ -71,24 +83,9 @@ static char	**r_map__(t_cubed *cubed, char *trimmed)
 			return (free(trimmed), NULL);
 		map[count++] = trimmed;
 		map[count] = NULL;
-		line = get_next_line(cubed->map_fd);
-		if (!line)
-			break ;
-		if (is_emptyl(line))
-		{
-			flag = 1;
-			free(line);
-			continue ;
-		}
-		if (flag)
-		{
-			free(line);
-			return (NULL);
-		}
-		trimmed = ft_strtrim(line, "\n");
-		free(line);
+		trimmed = full_valids(cubed, &flag);
 		if (!trimmed)
-			return (free_splited(map), NULL);
+			break ;
 	}
 	return (map);
 }
@@ -115,5 +112,5 @@ int	r_map(t_cubed *cubed)
 	map = r_map__(cubed, trimmed);
 	if (!map)
 		return (ft_putstr_fd("Map creation failed\n", 2), 1);
-	return (validate_and_store_map(cubed, map));
+	return (valid_storeit(cubed, map));
 }

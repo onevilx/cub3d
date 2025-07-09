@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 01:42:44 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/09 10:40:12 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	init_cubed(t_cubed *cubed)
 	cubed->ea_path = NULL;
 	cubed->floor_rgb = -1;
 	cubed->ceiling_rgb = -1;
-	cubed->c_set = 0;
-	cubed->f_set = 0;
 	cubed->map = NULL;
 	cubed->map_path = NULL;
 	cubed->map_fd = -1;
@@ -79,7 +77,7 @@ int	main(int ac, char **av)
 	if (!load_textures(&cubed))
 	{
 		free_textures(&cubed);
-		//more checks
+		free_cubed(&cubed);
 		exit(1);
 	}
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
@@ -93,6 +91,6 @@ int	main(int ac, char **av)
 	mlx_loop_hook(mlx, game_loop, &game);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	// free_cubed(&cubed);
+	free_cubed(&cubed);
 	return (0);
 }
