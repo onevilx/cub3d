@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_rend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 06:40:10 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:05:49 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:14:20 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,15 @@ int	load_textures(t_cubed *cubed)
 	cubed->textr.no = mlx_load_png(cubed->no_path);
 	if (!cubed->textr.no)
 		return (ft_putstr_fd("Error: failed to load north texture\n", 2), 0);
-
 	cubed->textr.so = mlx_load_png(cubed->so_path);
 	if (!cubed->textr.so)
 		return (ft_putstr_fd("Error: failed to load south texture\n", 2), 0);
-
 	cubed->textr.we = mlx_load_png(cubed->we_path);
 	if (!cubed->textr.we)
 		return (ft_putstr_fd("Error: failed to load west texture\n", 2), 0);
-
 	cubed->textr.ea = mlx_load_png(cubed->ea_path);
 	if (!cubed->textr.ea)
 		return (ft_putstr_fd("Error: failed to load east texture\n", 2), 0);
-
 	return (1);
 }
 
