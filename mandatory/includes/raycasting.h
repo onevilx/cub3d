@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 01:52:39 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/09 09:47:41 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # define PLAYER_DRAW_SIZE 35
 # define WIDTH 1920
 # define HEIGHT 1080
-# define ROT_SPEED 0.15
-# define MOVE_SPEED 0.30
+# define ROT_SPEED 0.05
+# define MOVE_SPEED 0.15
 
 void	init_game(t_game *game, t_cubed *cubed, t_player *player);
 void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx);
