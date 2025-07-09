@@ -6,7 +6,7 @@
 /*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 11:44:42 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:12:12 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "cub3d.h"
 
-# define TILE_SIZE 30
-# define PLAYER_DRAW_SIZE 35
 # define WIDTH 1800
 # define HEIGHT 920
 # define ROT_SPEED 0.05
@@ -26,11 +24,8 @@ void	init_game(t_game *game, t_cubed *cubed, t_player *player);
 void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx);
 void	init_ray_vars(t_player *p, int x, t_ray_vars *vars);
 void	render_3d_view(mlx_image_t *img, t_player *player, t_cubed *cubed);
-void	draw_minimap(mlx_image_t *img, t_cubed *cubed, t_player *player);
-void	draw_square(mlx_image_t *img, int x, int y, uint32_t color);
 void	set_player_dir(t_player *p, char dir);
 void	game_loop(void *param);
-void	draw_player(mlx_image_t *img, t_player *player);
 void	init_player(t_player *player, char **map);
 void	*ft_memset(void *b, int c, size_t len);
 void	rotate_player(t_player *p, double angle);

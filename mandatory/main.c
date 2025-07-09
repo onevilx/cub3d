@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 10:40:12 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:10:35 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,7 @@ int	main(int ac, char **av)
 
 	init_cubed(&cubed);
 	if (ac != 2)
-	{
-		ft_putstr_fd("Error: wrong format\n", 2);
-		return (1);
-	}
+		return (ft_putstr_fd("Error: wrong format\n", 2), 1);
 	cubed.map_path = av[1];
 	if (parsing(&cubed) == 1)
 		return (free_cubed(&cubed), 1);
@@ -85,7 +82,6 @@ int	main(int ac, char **av)
 		return (printf("Error creating image\n"), 1);
 	init_game(&game, &cubed, &player);
 	init_game_img(&game, img, mlx);
-	// draw_minimap(img, &cubed, &player);
 	render_3d_view(img, &player, &cubed);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop_hook(mlx, game_loop, &game);
