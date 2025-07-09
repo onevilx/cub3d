@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:22:20 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/09 13:03:54 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,14 @@ int	main(int ac, char **av)
 		return (free_cubed(&cubed), 1);
 	print_cubed_elements(&cubed);
 	init_player(&player, cubed.map);
-	mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	mlx = mlx_init(WIDTH, HEIGHT, "Cub3D_bonus", true);
 	if (!mlx)
 		return (printf("Error initializing MLX\n"), 1);
 	mlx_set_cursor_mode(mlx, MLX_MOUSE_DISABLED);
 	if (!load_textures(&cubed))
 	{
 		free_textures(&cubed);
-		//more checks
+		free_cubed(&cubed);
 		exit(1);
 	}
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
@@ -94,6 +94,6 @@ int	main(int ac, char **av)
 	mlx_loop_hook(mlx, game_loop, &game);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	// free_cubed(&cubed);
+	free_cubed(&cubed);
 	return (0);
 }
