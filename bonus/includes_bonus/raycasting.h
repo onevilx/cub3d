@@ -6,7 +6,7 @@
 /*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 11:44:42 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:18:07 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 # define PLAYER_DRAW_SIZE 35
 # define WIDTH 1800
 # define HEIGHT 920
-# define ROT_SPEED 0.05
-# define MOVE_SPEED 0.15
+# define ROT_SPEED 0.15
+# define MOVE_SPEED 0.30
+# define MOUSE_SENSITIVITY 0.0005
 
 void	init_game(t_game *game, t_cubed *cubed, t_player *player);
 void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx);
@@ -29,6 +30,7 @@ void	render_3d_view(mlx_image_t *img, t_player *player, t_cubed *cubed);
 void	draw_minimap(mlx_image_t *img, t_cubed *cubed, t_player *player);
 void	draw_square(mlx_image_t *img, int x, int y, uint32_t color);
 void	set_player_dir(t_player *p, char dir);
+void	mouse_look(t_game *game);
 void	game_loop(void *param);
 void	draw_player(mlx_image_t *img, t_player *player);
 void	init_player(t_player *player, char **map);

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 01:42:44 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/09 12:22:20 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/cub3d.h"
+#include "includes_bonus/cub3d.h"
 
 //========================================== DEBUG ==========================================================
 void	print_cubed_elements(t_cubed *cubed)
@@ -76,6 +76,7 @@ int	main(int ac, char **av)
 	mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (!mlx)
 		return (printf("Error initializing MLX\n"), 1);
+	mlx_set_cursor_mode(mlx, MLX_MOUSE_DISABLED);
 	if (!load_textures(&cubed))
 	{
 		free_textures(&cubed);
