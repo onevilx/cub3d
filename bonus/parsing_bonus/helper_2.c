@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 00:28:49 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:05:10 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:11:06 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,16 @@ int	valid_color(char *str, int *clr)
 		return (1);
 	*clr = (r << 24) | (g << 16) | (b << 8) | 255;
 	free_splited(rgb);
+	return (0);
+}
+
+int	valid_storeit(t_cubed *cubed, char **map)
+{
+	if (parse_it(map) == 0)
+	{
+		free_splited(map);
+		return (1);
+	}
+	cubed->map = map;
 	return (0);
 }

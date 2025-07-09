@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 13:03:54 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:14:50 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	init_cubed(t_cubed *cubed)
 	cubed->ea_path = NULL;
 	cubed->floor_rgb = -1;
 	cubed->ceiling_rgb = -1;
-	cubed->c_set = 0;
-	cubed->f_set = 0;
 	cubed->map = NULL;
 	cubed->map_path = NULL;
 	cubed->map_fd = -1;
