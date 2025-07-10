@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 00:35:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 16:37:24 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:17:03 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	what_is_it(char *str)
 	if (ft_strcmp(str, "WE") == 0)
 		return (1);
 	if (ft_strcmp(str, "EA") == 0)
+		return (1);
+	if (ft_strcmp(str, "HD") == 0)
 		return (1);
 	if (ft_strcmp(str, "F") == 0)
 		return (2);

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 12:18:13 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 16:33:50 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/10 20:29:15 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,19 @@
 
 # include "cub3d.h"
 
+typedef struct s_door
+{
+	int	*d_x;
+	int	*d_y;
+}	t_door;
+
 typedef struct s_textr
 {
 	mlx_texture_t	*no;
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*hd;
 }	t_textr;
 
 typedef struct cubed
@@ -37,6 +44,7 @@ typedef struct cubed
 	char	*map_path;
 	int		map_fd;
 	t_textr	textr;
+	t_door	door;
 }	t_cubed;
 
 typedef struct s_player
@@ -64,6 +72,19 @@ typedef struct s_dda
 	double	ray_dir_x;
 	double	ray_dir_y;
 }	t_dda;
+
+typedef struct s_render_ctx
+{
+	mlx_image_t		*img;
+	t_cubed			*cubed;
+	t_player		*p;
+	mlx_texture_t	*tex;
+	int				x;
+	int				start;
+	int				end;
+	int				height;
+	int				tex_x;
+}	t_render_ctx;
 
 typedef struct s_ray_vars
 {

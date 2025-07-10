@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   surr_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 07:02:22 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:05:30 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 20:45:00 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	inside_bounds(char **map, int i, int j)
 
 static int	is_walkable(char c)
 {
-	return (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == 'H' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 static int	touches_void(char **map, int i, int j)
@@ -63,6 +63,24 @@ static int	norm_map(char **map, int i, int j)
 	return (0);
 }
 
+static int	check_door(char **map, int i, int j)
+{
+	int	horz;
+	int	vert;
+
+	if (!inside_bounds(map, i, j - 1) || !inside_bounds(map, i, j + 1) ||
+		!inside_bounds(map, i - 1, j) || !inside_bounds(map, i + 1, j))
+		return (1);
+	horz = (map[i][j - 1] == '1' && map[i][j + 1] == '1');
+	vert = (map[i - 1][j] == '1' && map[i + 1][j] == '1');
+	if (!(horz || vert))
+	{
+		ft_putstr_fd("Error: door must be between two walls\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
 int	is_valid_map(char **map)
 {
 	int	i;
@@ -81,6 +99,11 @@ int	is_valid_map(char **map)
 		{
 			if (norm_map(map, i, j) == 1)
 				return (0);
+			if (map[i][j] == 'H')
+			{
+				if (check_door(map, i, j) == 1)
+					return (0);
+			}
 			j++;
 		}
 		i++;

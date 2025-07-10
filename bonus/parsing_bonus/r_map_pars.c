@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   r_map_pars.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 20:48:31 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:05:21 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:19:57 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	hasanotherchar(char **map)
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != 'N' &&
 					map[i][j] != 'S' && map[i][j] != 'E' && map[i][j] != 'W' &&
-					map[i][j] != ' ')
+					map[i][j] != ' ' && map[i][j] != 'H')
 				return (0);
 			j++;
 		}

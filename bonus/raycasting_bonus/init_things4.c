@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_things3.c                                     :+:      :+:    :+:   */
+/*   init_things4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/09 01:44:26 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:32:23 by yaboukir         ###   ########.fr       */
+/*   Created: 2025/07/07 16:42:32 by onevil_x          #+#    #+#             */
+/*   Updated: 2025/07/10 16:32:37 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/raycasting.h"
+#include "../includes_bonus/raycasting.h"
 
 double	calculate_dist(t_dda *dda, t_player *p)
 {

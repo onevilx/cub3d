@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/10 15:35:13 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/10 16:52:26 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,6 @@ AR				= ar rcs
 CFLAGS			= -Wall -Wextra -Werror -Iincludes -IMLX42/include -I/mnt/homes/$(USER)/brew/include -g -fsanitize=address
 LDFLAGS			= -LMLX42/build -L/mnt/homes/$(USER)/homebrew/lib -lmlx42 -ldl -lglfw -lm -pthread
 
-# ================= MANDATORY ================= #
-
 MAND_DIR		= mandatory
 
 SRC_MAND		= $(MAND_DIR)/main.c \
@@ -33,7 +31,6 @@ SRC_MAND		= $(MAND_DIR)/main.c \
 				  $(MAND_DIR)/raycasting/raycasting.c $(MAND_DIR)/raycasting/init_things1.c \
 				  $(MAND_DIR)/raycasting/init_things2.c $(MAND_DIR)/raycasting/init_things3.c \
 				  $(MAND_DIR)/raycasting/init_player.c $(MAND_DIR)/raycasting/hot_keys.c \
-				  $(MAND_DIR)/raycasting/ft_helpers1.c \
 				  $(MAND_DIR)/helpers/ft_strncmp.c $(MAND_DIR)/helpers/ft_strrchr.c \
 				  $(MAND_DIR)/helpers/ft_strrchr_custom.c $(MAND_DIR)/helpers/ft_putstr_fd.c \
 				  $(MAND_DIR)/helpers/ft_atoi.c $(MAND_DIR)/helpers/free_splited_args.c \
@@ -41,13 +38,11 @@ SRC_MAND		= $(MAND_DIR)/main.c \
 				  $(MAND_DIR)/helpers/ft_strcmp.c $(MAND_DIR)/helpers/ft_strtrim.c \
 				  $(MAND_DIR)/helpers/ft_bzero.c $(MAND_DIR)/helpers/ft_calloc.c \
 				  $(MAND_DIR)/helpers/ft_strlen.c $(MAND_DIR)/helpers/ft_strdup.c \
-				  $(MAND_DIR)/helpers/ft_isdigit.c \
+				  $(MAND_DIR)/helpers/ft_isdigit.c $(MAND_DIR)/helpers/ft_memset.c \
 				  $(MAND_DIR)/helpers/Get_Next_Line/get_next_line.c \
 				  $(MAND_DIR)/helpers/Get_Next_Line/get_next_line_utils.c
 
 OBJS_MAND		= $(SRC_MAND:.c=.o)
-
-# ================= BONUS ================= #
 
 BONUS_DIR		= bonus
 
@@ -60,7 +55,7 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 				  $(BONUS_DIR)/raycasting_bonus/raycasting.c $(BONUS_DIR)/raycasting_bonus/init_things1.c \
 				  $(BONUS_DIR)/raycasting_bonus/init_things2.c $(BONUS_DIR)/raycasting_bonus/init_things3.c \
 				  $(BONUS_DIR)/raycasting_bonus/init_player.c $(BONUS_DIR)/raycasting_bonus/hot_keys.c \
-				  $(BONUS_DIR)/raycasting_bonus/ft_helpers1.c \
+				  $(BONUS_DIR)/raycasting_bonus/init_things4.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strncmp.c $(BONUS_DIR)/helpers_bonus/ft_strrchr.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strrchr_custom.c $(BONUS_DIR)/helpers_bonus/ft_putstr_fd.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_atoi.c $(BONUS_DIR)/helpers_bonus/free_splited_args.c \
@@ -68,13 +63,11 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strcmp.c $(BONUS_DIR)/helpers_bonus/ft_strtrim.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_bzero.c $(BONUS_DIR)/helpers_bonus/ft_calloc.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strlen.c $(BONUS_DIR)/helpers_bonus/ft_strdup.c \
-				  $(BONUS_DIR)/helpers_bonus/ft_isdigit.c \
+				  $(BONUS_DIR)/helpers_bonus/ft_isdigit.c $(BONUS_DIR)/helpers_bonus/ft_memset.c \
 				  $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line.c \
 				  $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line_utils.c
 
 OBJS_BONUS		= $(SRC_BONUS:.c=.o)
-
-# ================= RULES ================= #
 
 all: $(NAME)
 

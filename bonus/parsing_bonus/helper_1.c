@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   helper_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:49:25 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:04:44 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 20:30:58 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ int	is_texture(t_cubed *cubed, char *str, char *arg)
 	{
 		cubed->ea_path = valid_tex_path(arg);
 		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "HD") == 0 && !cubed->door_path)
+	{
+		cubed->door_path = valid_tex_path(arg);
+		if (!cubed->door_path)
 			return (1);
 	}
 	return (0);
