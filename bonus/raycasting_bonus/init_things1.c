@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:41:46 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 12:06:06 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:21:08 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	draw_square(mlx_image_t *img, int x, int y, uint32_t color)
 	int	py;
 
 	j = 0;
-	while (j < TILE_SIZE)
+	while (j < MINIMAP_TILE)
 	{
 		i = 0;
-		while (i < TILE_SIZE)
+		while (i < MINIMAP_TILE)
 		{
-			px = x * TILE_SIZE + i;
-			py = y * TILE_SIZE + j;
+			px = x * MINIMAP_TILE + i;
+			py = y * MINIMAP_TILE + j;
 			draw_tile(img, px, py, color);
 			i++;
 		}
