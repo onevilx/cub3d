@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:36:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 12:43:06 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/10 10:31:14 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,21 @@ static void	draw_wall(mlx_image_t *img, int x, t_dda *dda,
 		double		tex_pos;
 		int			tex_x;
 		int			tex_y;
+
 		if (dda->side == 0)
-			tex = (dda->ray_dir_x > 0) ? cubed->textr.ea : cubed->textr.we;
+		{
+			if (dda->ray_dir_x > 0)
+				tex = cubed->textr.ea;
+			else
+				tex = cubed->textr.we;				
+		}
 		else
-			tex = (dda->ray_dir_y > 0) ? cubed->textr.so : cubed->textr.no;
+		{
+			if (dda->ray_dir_y > 0)
+				tex = cubed->textr.so;
+			else
+				tex = cubed->textr.no;
+		}
 		if (dda->side == 0)
 			wall_x = p->pos_y + dist * dda->ray_dir_y;
 		else
