@@ -6,11 +6,17 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:44:26 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 14:29:51 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:35:33 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/raycasting.h"
+
+void	init_game(t_game *game, t_cubed *cubed, t_player *player)
+{
+	game->cubed = cubed;
+	game->player = player;
+}
 
 void	get_map_dimensions(char **map, int *width, int *height)
 {
@@ -51,12 +57,6 @@ void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx)
 	mlx_image_to_window(mlx, game->minimap, 10, 10);
 }
 
-void	init_game(t_game *game, t_cubed *cubed, t_player *player)
-{
-	game->cubed = cubed;
-	game->player = player;
-}
-
 void	mouse_look(t_game *game)
 {
 	double	angle;
@@ -76,4 +76,27 @@ void	mouse_look(t_game *game)
 		rotate_player(game->player, angle);
 		mlx_set_mouse_pos(game->mlx, (WIDTH / 2), HEIGHT / 2);
 	}
+}
+
+void	draw_minimap(mlx_image_t *img, t_cubed *cubed, t_player *player)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (cubed->map[y])
+	{
+		x = 0;
+		while (cubed->map[y][x])
+		{
+			if (cubed->map[y][x] == '1')
+				draw_square(img, x, y, 0xFFFFFFFF);
+			else if (cubed->map[y][x] == '0'
+				|| ft_strrchr("NSEW", cubed->map[y][x]))
+				draw_square(img, x, y, 0x333333FF);
+			x++;
+		}
+		y++;
+	}
+	draw_player(img, player);
 }

@@ -6,35 +6,11 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:41:46 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 14:21:08 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:25:00 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/raycasting.h"
-
-void	init_player(t_player *player, char **map)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (ft_strrchr("NSEW", map[y][x]))
-			{
-				player->pos_x = x + 0.5;
-				player->pos_y = y + 0.5;
-				set_player_dir(player, map[y][x]);
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 static void	draw_tile(mlx_image_t *img, int px, int py, uint32_t color)
 {
@@ -68,4 +44,50 @@ void	draw_square(mlx_image_t *img, int x, int y, uint32_t color)
 		}
 		j++;
 	}
+}
+
+static void	draw_player_pixel(mlx_image_t *img, int dx, int dy)
+{
+	uint32_t	*pixels;
+
+	if (dx >= 0 && dy >= 0
+		&& dx < (int)img->width && dy < (int)img->height)
+	{
+		pixels = (uint32_t *)img->pixels;
+		pixels[dy * img->width + dx] = 0xFF0000FF;
+	}
+}
+
+static void	draw_player_body(mlx_image_t *img, int px, int py, int half)
+{
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+
+	y = -half;
+	while (y <= half)
+	{
+		x = -half;
+		while (x <= half)
+		{
+			dx = px + x;
+			dy = py + y;
+			draw_player_pixel(img, dx, dy);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_player(mlx_image_t *img, t_player *p)
+{
+	int	px;
+	int	py;
+	int	half;
+
+	px = (int)(p->pos_x * MINIMAP_TILE);
+	py = (int)(p->pos_y * MINIMAP_TILE);
+	half = MINIMAP_TILE / 2;
+	draw_player_body(img, px, py, half);
 }

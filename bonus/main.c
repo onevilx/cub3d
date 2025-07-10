@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 13:04:25 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:41:15 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	handle_parsing(t_cubed *cubed, int ac, char **av)
 
 static int	handle_mlx_and_textures(t_cubed *cubed, mlx_t **mlx)
 {
-	*mlx = mlx_init(WIDTH, HEIGHT, "Cub3D_bonus", true);
+	*mlx = mlx_init(WIDTH, HEIGHT, "Cub3D_bonus", false);
 	if (!*mlx)
 	{
 		printf("Error initializing MLX\n");

@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 12:18:13 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 12:46:01 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:31:42 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,19 @@ typedef struct s_dda
 	double	ray_dir_x;
 	double	ray_dir_y;
 }	t_dda;
+
+typedef struct s_render_ctx
+{
+	mlx_image_t		*img;
+	t_cubed			*cubed;
+	t_player		*p;
+	mlx_texture_t	*tex;
+	int				x;
+	int				start;
+	int				end;
+	int				height;
+	int				tex_x;
+}	t_render_ctx;
 
 typedef struct s_ray_vars
 {

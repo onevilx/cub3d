@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 12:18:13 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 17:21:54 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:03:40 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,19 @@ typedef struct s_dda
 	double	ray_dir_x;
 	double	ray_dir_y;
 }	t_dda;
+
+typedef struct s_render_ctx
+{
+	mlx_image_t		*img;
+	t_cubed			*cubed;
+	t_player		*p;
+	mlx_texture_t	*tex;
+	int				x;
+	int				start;
+	int				end;
+	int				height;
+	int				tex_x;
+}	t_render_ctx;
 
 typedef struct s_ray_vars
 {
