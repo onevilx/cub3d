@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 12:18:13 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:19:48 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:33:50 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct cubed
 	char	*so_path;
 	char	*we_path;
 	char	*ea_path;
+	char	*door_path;
+	bool	op_door;
 	int		floor_rgb;
 	int		ceiling_rgb;
 	char	**map;
@@ -76,6 +78,7 @@ typedef struct s_game
 	t_player	*player;
 	mlx_image_t	*img;
 	mlx_t		*mlx;
+	mlx_image_t	*minimap;
 }	t_game;
 
 #endif

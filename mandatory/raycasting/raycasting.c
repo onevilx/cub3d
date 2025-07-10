@@ -6,62 +6,11 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:36:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 10:31:14 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/10 15:17:54 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/raycasting.h"
-
-static void	init_dda_vars(t_player *p, double ray_dir_x, double ray_dir_y,
-		t_dda *dda)
-{
-	dda->map_x = (int)p->pos_x;
-	dda->map_y = (int)p->pos_y;
-	dda->delta_x = fabs(1 / ray_dir_x);
-	dda->delta_y = fabs(1 / ray_dir_y);
-	if (ray_dir_x < 0)
-	{
-		dda->step_x = -1;
-		dda->side_x = (p->pos_x - dda->map_x) * dda->delta_x;
-	}
-	else
-	{
-		dda->step_x = 1;
-		dda->side_x = (dda->map_x + 1.0 - p->pos_x) * dda->delta_x;
-	}
-	if (ray_dir_y < 0)
-	{
-		dda->step_y = -1;
-		dda->side_y = (p->pos_y - dda->map_y) * dda->delta_y;
-	}
-	else
-	{
-		dda->step_y = 1;
-		dda->side_y = (dda->map_y + 1.0 - p->pos_y) * dda->delta_y;
-	}
-}
-
-static void	perform_dda(char **map, t_dda *dda)
-{
-	dda->hit = 0;
-	while (dda->hit == 0)
-	{
-		if (dda->side_x < dda->side_y)
-		{
-			dda->side_x += dda->delta_x;
-			dda->map_x += dda->step_x;
-			dda->side = 0;
-		}
-		else
-		{
-			dda->side_y += dda->delta_y;
-			dda->map_y += dda->step_y;
-			dda->side = 1;
-		}
-		if (map[dda->map_y][dda->map_x] == '1')
-			dda->hit = 1;
-	}
-}
 
 static void	draw_wall(mlx_image_t *img, int x, t_dda *dda,
 				t_player *p, t_cubed *cubed)
@@ -137,7 +86,7 @@ static void	draw_wall(mlx_image_t *img, int x, t_dda *dda,
 		mlx_put_pixel(img, x, y++, cubed->floor_rgb);
 }
 
-void render_3d_view(mlx_image_t *img, t_player *p, t_cubed *cubed)
+void	render_3d_view(mlx_image_t *img, t_player *p, t_cubed *cubed)
 {
 	int		x;
 	t_ray_vars vars;
@@ -154,26 +103,4 @@ void render_3d_view(mlx_image_t *img, t_player *p, t_cubed *cubed)
 		draw_wall(img, x, &dda, p, cubed);
 		x++;
 	}
-}
-
-void	draw_minimap(mlx_image_t *img, t_cubed *cubed, t_player *player)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (cubed->map[y])
-	{
-		x = 0;
-		while (cubed->map[y][x])
-		{
-			if (cubed->map[y][x] == '1')
-				draw_square(img, x, y, 0xFFFFFFFF); // Wall
-			else if (cubed->map[y][x] == '0' || ft_strrchr("NSEW", cubed->map[y][x]))
-				draw_square(img, x, y, 0x333333FF); // Floor
-			x++;
-		}
-		y++;
-	}
-	draw_player(img, player);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hot_keys.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 12:21:14 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:27:36 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static void	handle_rotation_and_exit(t_player *p, mlx_t *mlx)
 
 void	game_loop(void *param)
 {
-	t_game		*game;
+	t_game	*game;
 
 	game = (t_game *)param;
 	handle_move_ws(game->player, game->cubed, game->mlx);
@@ -93,4 +93,7 @@ void	game_loop(void *param)
 	mouse_look(game);
 	ft_memset(game->img->pixels, 0, WIDTH * HEIGHT * sizeof(uint32_t));
 	render_3d_view(game->img, game->player, game->cubed);
+	ft_memset(game->minimap->pixels, 0,
+		game->minimap->width * game->minimap->height * sizeof(uint32_t));
+	draw_minimap(game->minimap, game->cubed, game->player);
 }

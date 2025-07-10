@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:28:49 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 01:53:15 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:58:32 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,61 +19,53 @@ void	init_ray_vars(t_player *p, int x, t_ray_vars *vars)
 	vars->ray_dir_y = p->dir_y + p->plane_y * vars->camera_x;
 }
 
-void	rotate_player(t_player *p, double angle)
+void	init_dda_vars(t_player *p, double ray_dir_x,
+	double ray_dir_y, t_dda *dda)
 {
-	double	old_dir_x;
-	double	old_plane_x;
-
-	old_dir_x = p->dir_x;
-	old_plane_x = p->plane_x;
-	p->dir_x = p->dir_x * cos(angle) - p->dir_y * sin(angle);
-	p->dir_y = old_dir_x * sin(angle) + p->dir_y * cos(angle);
-	p->plane_x = p->plane_x * cos(angle) - p->plane_y * sin(angle);
-	p->plane_y = old_plane_x * sin(angle) + p->plane_y * cos(angle);
-}
-
-static void	draw_player_pixel(mlx_image_t *img, int dx, int dy)
-{
-	uint32_t	*pixels;
-
-	if (dx >= 0 && dy >= 0
-		&& dx < (int)img->width && dy < (int)img->height)
+	dda->map_x = (int)p->pos_x;
+	dda->map_y = (int)p->pos_y;
+	dda->delta_x = fabs(1 / ray_dir_x);
+	dda->delta_y = fabs(1 / ray_dir_y);
+	if (ray_dir_x < 0)
 	{
-		pixels = (uint32_t *)img->pixels;
-		pixels[dy * img->width + dx] = 0xFF0000FF;
+		dda->step_x = -1;
+		dda->side_x = (p->pos_x - dda->map_x) * dda->delta_x;
+	}
+	else
+	{
+		dda->step_x = 1;
+		dda->side_x = (dda->map_x + 1.0 - p->pos_x) * dda->delta_x;
+	}
+	if (ray_dir_y < 0)
+	{
+		dda->step_y = -1;
+		dda->side_y = (p->pos_y - dda->map_y) * dda->delta_y;
+	}
+	else
+	{
+		dda->step_y = 1;
+		dda->side_y = (dda->map_y + 1.0 - p->pos_y) * dda->delta_y;
 	}
 }
 
-static void	draw_player_body(mlx_image_t *img, int px, int py, int half)
+void	perform_dda(char **map, t_dda *dda)
 {
-	int	x;
-	int	y;
-	int	dx;
-	int	dy;
-
-	y = -half;
-	while (y <= half)
+	dda->hit = 0;
+	while (dda->hit == 0)
 	{
-		x = -half;
-		while (x <= half)
+		if (dda->side_x < dda->side_y)
 		{
-			dx = px + x;
-			dy = py + y;
-			draw_player_pixel(img, dx, dy);
-			x++;
+			dda->side_x += dda->delta_x;
+			dda->map_x += dda->step_x;
+			dda->side = 0;
 		}
-		y++;
+		else
+		{
+			dda->side_y += dda->delta_y;
+			dda->map_y += dda->step_y;
+			dda->side = 1;
+		}
+		if (map[dda->map_y][dda->map_x] == '1')
+			dda->hit = 1;
 	}
-}
-
-void	draw_player(mlx_image_t *img, t_player *p)
-{
-	int	px;
-	int	py;
-	int	half;
-
-	px = (int)(p->pos_x * TILE_SIZE);
-	py = (int)(p->pos_y * TILE_SIZE);
-	half = PLAYER_DRAW_SIZE / 8;
-	draw_player_body(img, px, py, half);
 }

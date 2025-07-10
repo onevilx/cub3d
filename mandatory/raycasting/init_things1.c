@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:41:46 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 01:47:47 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:59:48 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,36 +36,27 @@ void	init_player(t_player *player, char **map)
 	}
 }
 
-static void	draw_tile(mlx_image_t *img, int px, int py, uint32_t color)
+void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx)
 {
-	uint32_t	*pixels;
-
-	if (px >= 0 && py >= 0
-		&& px < (int)img->width && py < (int)img->height)
-	{
-		pixels = (uint32_t *)img->pixels;
-		pixels[py * img->width + px] = color;
-	}
+	game->img = img;
+	game->mlx = mlx;
 }
 
-void	draw_square(mlx_image_t *img, int x, int y, uint32_t color)
+void	init_game(t_game *game, t_cubed *cubed, t_player *player)
 {
-	int	i;
-	int	j;
-	int	px;
-	int	py;
+	game->cubed = cubed;
+	game->player = player;
+}
 
-	j = 0;
-	while (j < TILE_SIZE)
-	{
-		i = 0;
-		while (i < TILE_SIZE)
-		{
-			px = x * TILE_SIZE + i;
-			py = y * TILE_SIZE + j;
-			draw_tile(img, px, py, color);
-			i++;
-		}
-		j++;
-	}
+void	rotate_player(t_player *p, double angle)
+{
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_dir_x = p->dir_x;
+	old_plane_x = p->plane_x;
+	p->dir_x = p->dir_x * cos(angle) - p->dir_y * sin(angle);
+	p->dir_y = old_dir_x * sin(angle) + p->dir_y * cos(angle);
+	p->plane_x = p->plane_x * cos(angle) - p->plane_y * sin(angle);
+	p->plane_y = old_plane_x * sin(angle) + p->plane_y * cos(angle);
 }

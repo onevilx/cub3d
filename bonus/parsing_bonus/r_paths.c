@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 00:35:15 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 16:12:30 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:37:24 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	r_paths(t_cubed	*cubed)
 	int		ctr;
 
 	ctr = 0;
-	while (ctr < 6)
+	while (ctr < 7)
 	{
 		buf = get_next_line(cubed->map_fd);
 		if (!buf)

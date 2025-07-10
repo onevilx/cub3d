@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:28:49 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 12:06:14 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:21:39 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	draw_player(mlx_image_t *img, t_player *p)
 	int	py;
 	int	half;
 
-	px = (int)(p->pos_x * TILE_SIZE);
-	py = (int)(p->pos_y * TILE_SIZE);
-	half = PLAYER_DRAW_SIZE / 8;
+	px = (int)(p->pos_x * MINIMAP_TILE);
+	py = (int)(p->pos_y * MINIMAP_TILE);
+	half = MINIMAP_TILE / 2;
 	draw_player_body(img, px, py, half);
 }

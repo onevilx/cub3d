@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:48:02 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:04:06 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/10 16:35:29 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ static int	valid_ext(char *stmap)
 	return (0);
 }
 
-static void	set_some(t_cubed *cubed)
-{
-	cubed->ceiling_rgb = -1;
-	cubed->floor_rgb = -1;
-}
-
 int	parsing(t_cubed	*cubed)
 {
 	if (valid_ext(cubed->map_path) != 0)
@@ -45,7 +39,6 @@ int	parsing(t_cubed	*cubed)
 		perror("Error opening map");
 		return (1);
 	}
-	set_some(cubed);
 	if (r_paths(cubed) == 1)
 		return (ft_putstr_fd("Error\n", 2), 1);
 	if (r_map(cubed) == 1)
