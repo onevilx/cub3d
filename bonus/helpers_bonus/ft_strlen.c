@@ -6,7 +6,7 @@
 /*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 02:16:23 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:09:46 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/12 20:38:17 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_strlen(const char	*s)
 {
 	int	i;
 
+	if (!s[i])
+		return (0);
 	i = 0;
 	while (s[i])
 	{

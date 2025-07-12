@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sword.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:07:35 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/11 18:24:30 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/12 19:22:20 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,4 @@ mlx_image_t	*resize_texture_to_image(mlx_t *mlx, mlx_texture_t *tex, int new_w, 
 		}
 	}
 	return (resized);
-}
-
-void	mouse_press_handler(mlx_key_data_t keydata, void *param)
-{
-	t_game *game = (t_game *)param;
-
-	if (keydata.key == MLX_MOUSE_BUTTON_LEFT && keydata.action == MLX_PRESS)
-	{
-		if (!game->cubed->sword_animating)
-		{
-			game->cubed->sword_animating = 1;
-			game->cubed->sword_frame = 0;
-		}
-	}
 }

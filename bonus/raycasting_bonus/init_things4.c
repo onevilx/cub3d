@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:42:32 by onevil_x          #+#    #+#             */
-/*   Updated: 2025/07/11 17:21:12 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/12 20:31:57 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,26 @@ void	draw_column_ceiling(mlx_image_t *img, int x, int start, t_cubed *cubed)
 	int	y;
 
 	y = 0;
-	while (y < start)
+	if (!img)
+		return ;
+	while (y < start && y < (int)img->height)
 	{
-		mlx_put_pixel(img, x, y, cubed->ceiling_rgb);
+		if (x >= 0 && x < (int)img->width && y >= 0)
+			mlx_put_pixel(img, x, y, cubed->ceiling_rgb);
 		y++;
 	}
 }
 
 void	draw_column_floor(mlx_image_t *img, int x, int end, t_cubed *cubed)
 {
-	int	y;
+	int	y = end + 1;
 
-	y = end + 1;
-	while (y < HEIGHT)
+	if (!img)
+		return;
+	while (y < (int)img->height)
 	{
-		mlx_put_pixel(img, x, y, cubed->floor_rgb);
+		if (x >= 0 && x < (int)img->width && y >= 0)
+			mlx_put_pixel(img, x, y, cubed->floor_rgb);
 		y++;
 	}
 }

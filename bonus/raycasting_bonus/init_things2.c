@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:28:49 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:33:29 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/12 20:45:49 by onevil_x         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	init_dda_vars(t_player *p, double ray_dir_x, double ray_dir_y,
 
 void	perform_dda(char **map, t_dda *dda)
 {
+	int map_height;
+
+	map_height = 0;
+	while (map[map_height])
+		map_height++;
 	dda->hit = 0;
 	while (dda->hit == 0)
 	{
@@ -78,6 +83,10 @@ void	perform_dda(char **map, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
+		if (dda->map_x < 0 || dda->map_y < 0 || dda->map_y >= map_height)
+			break ;
+		if (dda->map_x >= (int)ft_strlen(map[dda->map_y]))
+			break ;
 		if (map[dda->map_y][dda->map_x] == '1')
 			dda->hit = 1;
 	}
