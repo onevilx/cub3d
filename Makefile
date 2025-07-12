@@ -6,7 +6,7 @@
 #    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/10 16:42:53 by yaboukir         ###   ########.fr        #
+#    Updated: 2025/07/11 17:49:28 by yaboukir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 				  $(BONUS_DIR)/raycasting_bonus/raycasting.c $(BONUS_DIR)/raycasting_bonus/init_things1.c \
 				  $(BONUS_DIR)/raycasting_bonus/init_things2.c $(BONUS_DIR)/raycasting_bonus/init_things3.c \
 				  $(BONUS_DIR)/raycasting_bonus/init_player.c $(BONUS_DIR)/raycasting_bonus/hot_keys.c \
-				  $(BONUS_DIR)/raycasting_bonus/init_things4.c \
+				  $(BONUS_DIR)/raycasting_bonus/init_things4.c $(BONUS_DIR)/raycasting_bonus/init_sword.c\
 				  $(BONUS_DIR)/helpers_bonus/ft_strncmp.c $(BONUS_DIR)/helpers_bonus/ft_strrchr.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strrchr_custom.c $(BONUS_DIR)/helpers_bonus/ft_putstr_fd.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_atoi.c $(BONUS_DIR)/helpers_bonus/free_splited_args.c \

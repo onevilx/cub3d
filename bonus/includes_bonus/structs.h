@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 12:18:13 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 16:31:42 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:53:31 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_textr
 	mlx_texture_t	*so;
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
+	mlx_texture_t	*sword_frames[7];
 }	t_textr;
 
 typedef struct cubed
@@ -34,6 +35,9 @@ typedef struct cubed
 	char	**map;
 	char	*map_path;
 	int		map_fd;
+	mlx_image_t	*sword_img;
+	int			sword_frame;
+	int			sword_animating;
 	t_textr	textr;
 }	t_cubed;
 

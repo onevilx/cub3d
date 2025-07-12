@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 14:27:36 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:26:52 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,31 @@ static void	handle_rotation_and_exit(t_player *p, mlx_t *mlx)
 		mlx_close_window(mlx);
 }
 
+void	animate_sword(t_game *game)
+{
+	static int frame_timer = 0;
+
+	if (!game->cubed->sword_animating)
+		return ;
+	if (++frame_timer < 1)
+		return ;
+	frame_timer = 0;
+	game->cubed->sword_frame++;
+	if (game->cubed->sword_frame >= 7)
+	{
+		game->cubed->sword_frame = 0;
+		game->cubed->sword_animating = 0;
+	}
+	if (game->cubed->sword_img)
+		mlx_delete_image(game->mlx, game->cubed->sword_img);
+	game->cubed->sword_img = resize_texture_to_image(game->mlx,
+		game->cubed->textr.sword_frames[game->cubed->sword_frame], 700, 700);
+	int sword_x = (WIDTH - game->cubed->sword_img->width) / 2;
+	int sword_y = HEIGHT - game->cubed->sword_img->height;
+	mlx_image_to_window(game->mlx, game->cubed->sword_img, sword_x, sword_y);
+	game->cubed->sword_img->instances[0].z = 10;
+}
+
 void	game_loop(void *param)
 {
 	t_game	*game;
@@ -91,6 +116,12 @@ void	game_loop(void *param)
 	handle_move_ad(game->player, game->cubed, game->mlx);
 	handle_rotation_and_exit(game->player, game->mlx);
 	mouse_look(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_R) && !game->cubed->sword_animating)
+	{
+		game->cubed->sword_animating = 1;
+		game->cubed->sword_frame = 0;
+	}
+	animate_sword(game);
 	ft_memset(game->img->pixels, 0, WIDTH * HEIGHT * sizeof(uint32_t));
 	render_3d_view(game->img, game->player, game->cubed);
 	ft_memset(game->minimap->pixels, 0,

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_rend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 06:40:10 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 16:14:20 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:59:26 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,18 @@
 
 int	load_textures(t_cubed *cubed)
 {
+	char	path[100];
+	int		i;
+
+	i = 0;
+	while (i < 7)
+	{
+		snprintf(path, sizeof(path), "bonus/textures_bonus/animated_sword/frame_0%d.png", i + 1);
+		cubed->textr.sword_frames[i] = mlx_load_png(path);
+		if (!cubed->textr.sword_frames[i])
+			return (ft_putstr_fd("Error: failed to load sword frame\n", 2), 0);
+		i++;
+	}
 	cubed->textr.no = mlx_load_png(cubed->no_path);
 	if (!cubed->textr.no)
 		return (ft_putstr_fd("Error: failed to load north texture\n", 2), 0);
@@ -31,6 +43,9 @@ int	load_textures(t_cubed *cubed)
 
 void	free_textures(t_cubed *cubed)
 {
+	int i;
+
+	i = 0;
 	if (cubed->textr.no)
 		mlx_delete_texture(cubed->textr.no);
 	if (cubed->textr.so)
@@ -39,6 +54,12 @@ void	free_textures(t_cubed *cubed)
 		mlx_delete_texture(cubed->textr.we);
 	if (cubed->textr.ea)
 		mlx_delete_texture(cubed->textr.ea);
+	while (i < 7)
+	{
+		if (cubed->textr.sword_frames[i])
+			mlx_delete_texture(cubed->textr.sword_frames[i]);
+		i++;
+	}
 }
 
 uint32_t	tex_clr_finder(mlx_texture_t *tex, int x, int y)

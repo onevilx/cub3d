@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:44:51 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/12 15:46:43 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define WIDTH 1800
 # define HEIGHT 920
 # define ROT_SPEED 0.05
-# define MOVE_SPEED 0.12
+# define MOVE_SPEED 0.15
 # define MOUSE_SENSITIVITY 0.002
 # define MINIMAP_TILE 10
 
@@ -29,6 +29,8 @@ void			init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx);
 void			init_ray_vars(t_player *p, int x, t_ray_vars *vars);
 void			render_3d_view(mlx_image_t *img, t_player *player,
 					t_cubed *cubed);
+void			mouse_press_handler(mlx_key_data_t keydata, void *param);
+mlx_image_t		*resize_texture_to_image(mlx_t *mlx, mlx_texture_t *tex, int new_w, int new_h);
 void			draw_minimap(mlx_image_t *img, t_cubed *cubed,
 					t_player *player);
 void			draw_square(mlx_image_t *img, int x, int y, uint32_t color);

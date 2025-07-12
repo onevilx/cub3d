@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:44:26 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:35:33 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:19:40 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx)
 	int	map_h;
 	int	mm_width;
 	int	mm_height;
+	mlx_image_t	*sword_img;
 
 	game->mlx = mlx;
 	game->img = img;
@@ -55,6 +56,22 @@ void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx)
 	}
 	mlx_image_to_window(mlx, game->img, 0, 0);
 	mlx_image_to_window(mlx, game->minimap, 10, 10);
+	game->cubed->sword_frame = 0;
+	game->cubed->sword_animating = 0;
+	sword_img = resize_texture_to_image(mlx, game->cubed->textr.sword_frames[0], 700, 700);
+	if (!sword_img)
+	{
+		printf("Error: Failed to convert sword texture to image\n");
+		exit(EXIT_FAILURE);
+	}
+	game->cubed->sword_img = sword_img;
+	int sword_x = (WIDTH - sword_img->width) / 2;
+	int sword_y = HEIGHT - sword_img->height;
+	if (mlx_image_to_window(mlx, sword_img, sword_x, sword_y) < 0)
+	{
+		printf("Error: Failed to put sword image to window\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	mouse_look(t_game *game)
