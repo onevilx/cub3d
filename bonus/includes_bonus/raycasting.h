@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:44:51 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:18:11 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void			draw_column_floor(mlx_image_t *img, int x,
 					int end, t_cubed *cubed);
 int				get_tex_x(mlx_texture_t *tex, t_dda *dda,
 					t_player *p, double dist);
-void			perform_dda(char **map, t_dda *dda);
+void			perform_dda(char **map, t_dda *dda, t_cubed *cubed);
 void			set_player_dir(t_player *p, char dir);
 void			mouse_look(t_game *game);
 void			game_loop(void *param);
@@ -50,5 +50,6 @@ void			draw_player(mlx_image_t *img, t_player *player);
 void			init_player(t_player *player, char **map);
 void			*ft_memset(void *b, int c, size_t len);
 void			rotate_player(t_player *p, double angle);
+int				is_player_near_door(t_cubed *cubed, t_player *player);
 
 #endif

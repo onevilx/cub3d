@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:36:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:31:25 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:16:59 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	render_3d_view(mlx_image_t *img, t_player *p, t_cubed *cubed)
 		dda.ray_dir_x = vars.ray_dir_x;
 		dda.ray_dir_y = vars.ray_dir_y;
 		init_dda_vars(p, vars.ray_dir_x, vars.ray_dir_y, &dda);
-		perform_dda(cubed->map, &dda);
+		perform_dda(cubed->map, &dda, cubed);
 		dist = calculate_dist(&dda, p);
 		draw_wall(x, &dda, dist, &ctx);
 		x++;

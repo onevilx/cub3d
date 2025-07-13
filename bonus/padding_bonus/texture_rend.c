@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 06:40:10 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 18:17:52 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:41:00 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	load_textures(t_cubed *cubed)
 	cubed->textr.ea = mlx_load_png(cubed->ea_path);
 	if (!cubed->textr.ea)
 		return (ft_putstr_fd("Error: failed to load east texture\n", 2), 0);
-	cubed->textr.hd = mlx_load_png(cubed->ea_path);
+	cubed->textr.hd = mlx_load_png(cubed->door_path);
 	if (!cubed->textr.hd)
 		return (ft_putstr_fd("Error: failed to load door texture\n", 2), 0);
 	return (1);

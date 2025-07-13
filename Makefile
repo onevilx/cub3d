@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/10 16:52:26 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/13 16:20:17 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strlen.c $(BONUS_DIR)/helpers_bonus/ft_strdup.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_isdigit.c $(BONUS_DIR)/helpers_bonus/ft_memset.c \
 				  $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line.c \
-				  $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line_utils.c
+				  $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line_utils.c \
+				  $(BONUS_DIR)/padding_bonus/door_states.c
 
 OBJS_BONUS		= $(SRC_BONUS:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hot_keys.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 14:27:36 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/11 18:05:50 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,5 @@ void	game_loop(void *param)
 	ft_memset(game->minimap->pixels, 0,
 		game->minimap->width * game->minimap->height * sizeof(uint32_t));
 	draw_minimap(game->minimap, game->cubed, game->player);
+	game->cubed->op_door = is_player_near_door(game->cubed, game->player);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:28:49 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:33:29 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:13:11 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	init_dda_vars(t_player *p, double ray_dir_x, double ray_dir_y,
 	}
 }
 
-void	perform_dda(char **map, t_dda *dda)
+void	perform_dda(char **map, t_dda *dda, t_cubed *cubed)
 {
 	dda->hit = 0;
 	while (dda->hit == 0)
@@ -78,7 +78,8 @@ void	perform_dda(char **map, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		if (map[dda->map_y][dda->map_x] == '1')
+		if (map[dda->map_y][dda->map_x] == '1'
+				|| (map[dda->map_y][dda->map_x] == 'H' && !cubed->op_door))
 			dda->hit = 1;
 	}
 }
