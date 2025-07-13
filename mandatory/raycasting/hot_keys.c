@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/09 01:27:51 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:31:39 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,19 @@ static int	is_walkable(char **map, double x, double y)
 {
 	int	mx;
 	int	my;
+	int	map_height;
 
 	mx = (int)x;
 	my = (int)y;
+	if (my < 0 || mx < 0)
+		return (0);
+	map_height = 0;
+	while (map[map_height])
+		map_height++;
+	if (my >= map_height)
+		return (0);
+	if (mx >= (int)ft_strlen(map[my]))
+		return (0);
 	return (map[my][mx] != '1');
 }
 

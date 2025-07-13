@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:44:55 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:36:42 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define WIDTH 1800
 # define HEIGHT 920
 # define ROT_SPEED 0.05
-# define MOVE_SPEED 0.12
+# define MOVE_SPEED 0.15
 
 void			init_game(t_game *game, t_cubed *cubed, t_player *player);
 void			init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx);

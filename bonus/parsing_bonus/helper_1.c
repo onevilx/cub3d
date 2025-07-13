@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:49:25 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 20:30:58 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:29:00 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ char	*valid_tex_path(char *arg)
 	return (path);
 }
 
+static int	is_texture__(t_cubed *cubed, char *str, char *arg)
+{
+	if (ft_strcmp(str, "EA") == 0 && !cubed->ea_path)
+	{
+		cubed->ea_path = valid_tex_path(arg);
+		if (!cubed->no_path)
+			return (1);
+	}
+	else if (ft_strcmp(str, "HD") == 0 && !cubed->door_path)
+	{
+		cubed->door_path = valid_tex_path(arg);
+		if (!cubed->door_path)
+			return (1);
+	}
+	return (0);
+}
+
 int	is_texture(t_cubed *cubed, char *str, char *arg)
 {
 	if (ft_strcmp(str, "NO") == 0 && !cubed->no_path)
@@ -71,17 +88,7 @@ int	is_texture(t_cubed *cubed, char *str, char *arg)
 		if (!cubed->no_path)
 			return (1);
 	}
-	else if (ft_strcmp(str, "EA") == 0 && !cubed->ea_path)
-	{
-		cubed->ea_path = valid_tex_path(arg);
-		if (!cubed->no_path)
-			return (1);
-	}
-	else if (ft_strcmp(str, "HD") == 0 && !cubed->door_path)
-	{
-		cubed->door_path = valid_tex_path(arg);
-		if (!cubed->door_path)
-			return (1);
-	}
+	else
+		return (is_texture__(cubed, str, arg));
 	return (0);
 }

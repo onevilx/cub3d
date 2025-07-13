@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/29 02:16:23 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/12 22:46:29 by yaboukir         ###   ########.fr       */
+/*   Created: 2025/07/12 23:01:37 by yaboukir          #+#    #+#             */
+/*   Updated: 2025/07/12 23:02:00 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/helpers.h"
 
-int	ft_strlen(const char	*s)
+char	*ft_strcat(char *dst, const char *src)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
 
+	if (!dst || !src)
+		return (NULL);
 	i = 0;
-	if (!s[i])
-		return (0);
-	while (s[i])
-	{
+	while (dst[i])
 		i++;
+	j = 0;
+	while (src[j])
+	{
+		dst[i + j] = src[j];
+		j++;
 	}
-	return (i);
+	dst[i + j] = '\0';
+	return (dst);
 }

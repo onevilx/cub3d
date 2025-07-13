@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:28:49 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/13 16:13:11 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:10:36 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,28 @@ void	init_dda_vars(t_player *p, double ray_dir_x, double ray_dir_y,
 	}
 }
 
+int	is_wall_hit(char **map, t_dda *dda, int map_height, t_cubed *cubed)
+{
+	if (dda->map_x < 0 || dda->map_y < 0 || dda->map_y >= map_height)
+		return (1);
+	if (dda->map_x >= (int)ft_strlen(map[dda->map_y]))
+		return (1);
+	if (map[dda->map_y][dda->map_x] == '1'
+				|| (map[dda->map_y][dda->map_x] == 'H' && !cubed->op_door))
+	{
+		dda->hit = 1;
+		return (1);
+	}
+	return (0);
+}
+
 void	perform_dda(char **map, t_dda *dda, t_cubed *cubed)
 {
+	int	map_height;
+
+	map_height = 0;
+	while (map[map_height])
+		map_height++;
 	dda->hit = 0;
 	while (dda->hit == 0)
 	{
@@ -78,32 +98,7 @@ void	perform_dda(char **map, t_dda *dda, t_cubed *cubed)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		if (map[dda->map_y][dda->map_x] == '1'
-				|| (map[dda->map_y][dda->map_x] == 'H' && !cubed->op_door))
-			dda->hit = 1;
-	}
-}
-
-void	init_player(t_player *player, char **map)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-			if (ft_strrchr("NSEW", map[y][x]))
-			{
-				player->pos_x = x + 0.5;
-				player->pos_y = y + 0.5;
-				set_player_dir(player, map[y][x]);
-				return ;
-			}
-			x++;
-		}
-		y++;
+		if (is_wall_hit(map, dda, map_height, cubed))
+			break ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 00:28:49 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 16:11:06 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:32:58 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,10 @@ int	valid_storeit(t_cubed *cubed, char **map)
 	}
 	cubed->map = map;
 	return (0);
+}
+
+int	is_walkable(char c)
+{
+	return (c == 'H' || c == '0' || c == 'N'
+		|| c == 'S' || c == 'E' || c == 'W');
 }

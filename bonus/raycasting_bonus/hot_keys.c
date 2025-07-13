@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/11 18:05:50 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:47:44 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,19 @@ static int	is_walkable(char **map, double x, double y)
 {
 	int	mx;
 	int	my;
+	int	map_height;
 
 	mx = (int)x;
 	my = (int)y;
+	if (my < 0 || mx < 0)
+		return (0);
+	map_height = 0;
+	while (map[map_height])
+		map_height++;
+	if (my >= map_height)
+		return (0);
+	if (mx >= (int)ft_strlen(map[my]))
+		return (0);
 	return (map[my][mx] != '1');
 }
 
@@ -91,6 +101,12 @@ void	game_loop(void *param)
 	handle_move_ad(game->player, game->cubed, game->mlx);
 	handle_rotation_and_exit(game->player, game->mlx);
 	mouse_look(game);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_R) && !game->cubed->sword_animating)
+	{
+		game->cubed->sword_animating = 1;
+		game->cubed->sword_frame = 0;
+	}
+	animate_sword(game);
 	ft_memset(game->img->pixels, 0, WIDTH * HEIGHT * sizeof(uint32_t));
 	render_3d_view(game->img, game->player, game->cubed);
 	ft_memset(game->minimap->pixels, 0,

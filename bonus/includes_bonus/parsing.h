@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:25:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 12:14:21 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:33:58 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ int			load_textures(t_cubed *cubed);
 void		free_textures(t_cubed *cubed);
 uint32_t	tex_clr_finder(mlx_texture_t *tex, int x, int y);
 int			valid_storeit(t_cubed *cubed, char **map);
+int			is_walkable(char c);
 
 #endif

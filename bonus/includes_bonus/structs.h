@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 12:18:13 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 20:29:15 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:47:10 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,26 @@ typedef struct s_textr
 	mlx_texture_t	*we;
 	mlx_texture_t	*ea;
 	mlx_texture_t	*hd;
+	mlx_texture_t	*sword_frames[7];
 }	t_textr;
 
 typedef struct cubed
 {
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	char	*door_path;
-	bool	op_door;
-	int		floor_rgb;
-	int		ceiling_rgb;
-	char	**map;
-	char	*map_path;
-	int		map_fd;
-	t_textr	textr;
-	t_door	door;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
+	char			*door_path;
+	bool			op_door;
+	int				floor_rgb;
+	int				ceiling_rgb;
+	char			**map;
+	char			*map_path;
+	int				map_fd;
+	int				sword_frame;
+	int				sword_animating;
+	t_textr			textr;
+	mlx_image_t		*sword_img;
 }	t_cubed;
 
 typedef struct s_player
@@ -72,6 +75,12 @@ typedef struct s_dda
 	double	ray_dir_x;
 	double	ray_dir_y;
 }	t_dda;
+
+typedef struct s_img_size
+{
+	int	width;
+	int	height;
+}	t_img_size;
 
 typedef struct s_render_ctx
 {

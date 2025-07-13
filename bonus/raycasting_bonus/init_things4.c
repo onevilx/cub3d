@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:42:32 by onevil_x          #+#    #+#             */
-/*   Updated: 2025/07/13 16:18:40 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 16:50:27 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ void	draw_column_ceiling(mlx_image_t *img, int x, int start, t_cubed *cubed)
 	int	y;
 
 	y = 0;
-	while (y < start)
+	if (!img)
+		return ;
+	while (y < start && y < (int)img->height)
 	{
-		mlx_put_pixel(img, x, y, cubed->ceiling_rgb);
+		if (x >= 0 && x < (int)img->width && y >= 0)
+			mlx_put_pixel(img, x, y, cubed->ceiling_rgb);
 		y++;
 	}
 }
@@ -52,9 +55,12 @@ void	draw_column_floor(mlx_image_t *img, int x, int end, t_cubed *cubed)
 	int	y;
 
 	y = end + 1;
-	while (y < HEIGHT)
+	if (!img)
+		return ;
+	while (y < (int)img->height)
 	{
-		mlx_put_pixel(img, x, y, cubed->floor_rgb);
+		if (x >= 0 && x < (int)img->width && y >= 0)
+			mlx_put_pixel(img, x, y, cubed->floor_rgb);
 		y++;
 	}
 }

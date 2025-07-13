@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 07:02:22 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 20:45:00 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:32:52 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ static int	inside_bounds(char **map, int i, int j)
 	if (j >= ft_strlen(map[i]))
 		return (0);
 	return (1);
-}
-
-static int	is_walkable(char c)
-{
-	return (c == 'H' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 static int	touches_void(char **map, int i, int j)
@@ -68,8 +63,8 @@ static int	check_door(char **map, int i, int j)
 	int	horz;
 	int	vert;
 
-	if (!inside_bounds(map, i, j - 1) || !inside_bounds(map, i, j + 1) ||
-		!inside_bounds(map, i - 1, j) || !inside_bounds(map, i + 1, j))
+	if (!inside_bounds(map, i, j - 1) || !inside_bounds(map, i, j + 1)
+		|| !inside_bounds(map, i - 1, j) || !inside_bounds(map, i + 1, j))
 		return (1);
 	horz = (map[i][j - 1] == '1' && map[i][j + 1] == '1');
 	vert = (map[i - 1][j] == '1' && map[i + 1][j] == '1');
@@ -87,10 +82,7 @@ int	is_valid_map(char **map)
 	int	j;
 
 	if (!map || !map[0])
-	{
-		write(2, "Error: map is empty\n", 20);
-		return (0);
-	}
+		return (ft_putstr_fd("Error: map is empty\n", 2), 0);
 	i = 0;
 	while (map[i])
 	{
