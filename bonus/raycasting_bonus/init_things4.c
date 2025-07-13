@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:42:32 by onevil_x          #+#    #+#             */
-/*   Updated: 2025/07/12 20:31:57 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:20:46 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,11 @@ void	draw_column_ceiling(mlx_image_t *img, int x, int start, t_cubed *cubed)
 
 void	draw_column_floor(mlx_image_t *img, int x, int end, t_cubed *cubed)
 {
-	int	y = end + 1;
+	int	y;
 
+	y = end + 1;
 	if (!img)
-		return;
+		return ;
 	while (y < (int)img->height)
 	{
 		if (x >= 0 && x < (int)img->width && y >= 0)

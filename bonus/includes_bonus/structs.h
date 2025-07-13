@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 12:18:13 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/11 17:53:31 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:16:52 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ typedef struct s_textr
 
 typedef struct cubed
 {
-	char	*no_path;
-	char	*so_path;
-	char	*we_path;
-	char	*ea_path;
-	int		floor_rgb;
-	int		ceiling_rgb;
-	char	**map;
-	char	*map_path;
-	int		map_fd;
-	mlx_image_t	*sword_img;
-	int			sword_frame;
-	int			sword_animating;
-	t_textr	textr;
+	char			*no_path;
+	char			*so_path;
+	char			*we_path;
+	char			*ea_path;
+	int				floor_rgb;
+	int				ceiling_rgb;
+	char			**map;
+	char			*map_path;
+	int				map_fd;
+	mlx_image_t		*sword_img;
+	int				sword_frame;
+	int				sword_animating;
+	t_textr			textr;
 }	t_cubed;
 
 typedef struct s_player
@@ -66,6 +66,12 @@ typedef struct s_dda
 	double	ray_dir_x;
 	double	ray_dir_y;
 }	t_dda;
+
+typedef struct s_img_size
+{
+	int	width;
+	int	height;
+}	t_img_size;
 
 typedef struct s_render_ctx
 {

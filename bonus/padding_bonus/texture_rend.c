@@ -6,26 +6,38 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 06:40:10 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/11 17:59:26 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/12 23:07:21 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/cub3d.h"
 
-int	load_textures(t_cubed *cubed)
+int	load_sword_frames(t_cubed *cubed)
 {
-	char	path[100];
+	char	path[64];
+	char	*frame_num;
 	int		i;
 
 	i = 0;
 	while (i < 7)
 	{
-		snprintf(path, sizeof(path), "bonus/textures_bonus/animated_sword/frame_0%d.png", i + 1);
+		ft_strcpy(path, "bonus/textures_bonus/animated_sword/frame_0");
+		frame_num = ft_itoa(i + 1);
+		if (!frame_num)
+			return (ft_putstr_fd("Error: malloc failed\n", 2), 0);
+		ft_strcat(path, frame_num);
+		ft_strcat(path, ".png");
+		free(frame_num);
 		cubed->textr.sword_frames[i] = mlx_load_png(path);
 		if (!cubed->textr.sword_frames[i])
 			return (ft_putstr_fd("Error: failed to load sword frame\n", 2), 0);
 		i++;
 	}
+	return (1);
+}
+
+int	load_textures(t_cubed *cubed)
+{
 	cubed->textr.no = mlx_load_png(cubed->no_path);
 	if (!cubed->textr.no)
 		return (ft_putstr_fd("Error: failed to load north texture\n", 2), 0);
@@ -38,12 +50,14 @@ int	load_textures(t_cubed *cubed)
 	cubed->textr.ea = mlx_load_png(cubed->ea_path);
 	if (!cubed->textr.ea)
 		return (ft_putstr_fd("Error: failed to load east texture\n", 2), 0);
+	if (!load_sword_frames(cubed))
+		return (0);
 	return (1);
 }
 
 void	free_textures(t_cubed *cubed)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (cubed->textr.no)

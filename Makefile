@@ -6,7 +6,7 @@
 #    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/11 17:49:28 by yaboukir         ###   ########.fr        #
+#    Updated: 2025/07/13 02:26:57 by yaboukir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 				  $(BONUS_DIR)/parsing_bonus/r_map.c $(BONUS_DIR)/parsing_bonus/cleanup.c \
 				  $(BONUS_DIR)/parsing_bonus/helper_1.c $(BONUS_DIR)/parsing_bonus/helper_2.c \
 				  $(BONUS_DIR)/parsing_bonus/r_map_pars.c $(BONUS_DIR)/parsing_bonus/surr_walls.c \
-				  $(BONUS_DIR)/padding_bonus/texture_rend.c \
+				  $(BONUS_DIR)/padding_bonus/texture_rend.c $(BONUS_DIR)/raycasting_bonus/init_things5.c\
 				  $(BONUS_DIR)/raycasting_bonus/raycasting.c $(BONUS_DIR)/raycasting_bonus/init_things1.c \
 				  $(BONUS_DIR)/raycasting_bonus/init_things2.c $(BONUS_DIR)/raycasting_bonus/init_things3.c \
 				  $(BONUS_DIR)/raycasting_bonus/init_player.c $(BONUS_DIR)/raycasting_bonus/hot_keys.c \
@@ -61,10 +61,11 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_atoi.c $(BONUS_DIR)/helpers_bonus/free_splited_args.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_old_split.c $(BONUS_DIR)/helpers_bonus/ft_memcpy.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strcmp.c $(BONUS_DIR)/helpers_bonus/ft_strtrim.c \
+				  $(BONUS_DIR)/helpers_bonus/ft_strcat.c $(BONUS_DIR)/helpers_bonus/ft_strcpy.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_bzero.c $(BONUS_DIR)/helpers_bonus/ft_calloc.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_strlen.c $(BONUS_DIR)/helpers_bonus/ft_strdup.c \
 				  $(BONUS_DIR)/helpers_bonus/ft_isdigit.c $(BONUS_DIR)/helpers_bonus/ft_memset.c \
-				  $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line.c \
+				  $(BONUS_DIR)/helpers_bonus/ft_itoa.c $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line.c \
 				  $(BONUS_DIR)/helpers_bonus/Get_Next_Line/get_next_line_utils.c
 
 OBJS_BONUS		= $(SRC_BONUS:.c=.o)

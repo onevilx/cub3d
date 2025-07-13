@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hot_keys.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/12 20:38:59 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/12 23:10:11 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static int	is_walkable(char **map, double x, double y)
 {
-	int	mx = (int)x;
-	int	my = (int)y;
+	int	mx;
+	int	my;
+	int	map_height;
 
+	mx = (int)x;
+	my = (int)y;
 	if (my < 0 || mx < 0)
 		return (0);
-	int map_height = 0;
+	map_height = 0;
 	while (map[map_height])
 		map_height++;
 	if (my >= map_height)
@@ -87,31 +90,6 @@ static void	handle_rotation_and_exit(t_player *p, mlx_t *mlx)
 		rotate_player(p, ROT_SPEED);
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
-}
-
-void	animate_sword(t_game *game)
-{
-	static int frame_timer = 0;
-
-	if (!game->cubed->sword_animating)
-		return ;
-	if (++frame_timer < 1)
-		return ;
-	frame_timer = 0;
-	game->cubed->sword_frame++;
-	if (game->cubed->sword_frame >= 7)
-	{
-		game->cubed->sword_frame = 0;
-		game->cubed->sword_animating = 0;
-	}
-	if (game->cubed->sword_img)
-		mlx_delete_image(game->mlx, game->cubed->sword_img);
-	game->cubed->sword_img = resize_texture_to_image(game->mlx,
-		game->cubed->textr.sword_frames[game->cubed->sword_frame], 700, 700);
-	int sword_x = (WIDTH - game->cubed->sword_img->width) / 2;
-	int sword_y = HEIGHT - game->cubed->sword_img->height;
-	mlx_image_to_window(game->mlx, game->cubed->sword_img, sword_x, sword_y);
-	game->cubed->sword_img->instances[0].z = 10;
 }
 
 void	game_loop(void *param)
