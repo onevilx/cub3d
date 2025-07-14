@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 16:42:32 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/14 17:27:27 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/14 18:36:33 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ double	calculate_dist(t_dda *dda, t_player *p)
 
 mlx_texture_t	*select_texture(t_dda *dda, t_cubed *cubed)
 {
-	if (cubed->map[dda->map_y][dda->map_x] == 'H' && !cubed->op_door)
+	if (is_in_map(cubed, dda->map_y, dda->map_x)
+		&& cubed->map[dda->map_y][dda->map_x] == 'H' && !cubed->op_door)
 		return (cubed->textr.hd);
 	if (dda->side == 0)
 	{

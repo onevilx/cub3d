@@ -6,7 +6,7 @@
 #    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/13 17:12:34 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/14 18:20:59 by adechaji         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,10 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 
 OBJS_BONUS		= $(SRC_BONUS:.c=.o)
 
+MAND_DEP		= mandatory/includes/*.h 
+
+BONUS_DEP		= bonus/includes_bonus/*.h 
+
 all: $(NAME)
 
 $(NAME): $(OBJS_MAND)
@@ -82,10 +86,10 @@ bonus: $(NAME_BONUS)
 $(NAME_BONUS): $(OBJS_BONUS)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) -o $(NAME_BONUS) $(LDFLAGS)
 
-$(MAND_DIR)/%.o: $(MAND_DIR)/%.c
+$(MAND_DIR)/%.o: $(MAND_DIR)/%.c $(MAND_DEP)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BONUS_DIR)/%.o: $(BONUS_DIR)/%.c
+$(BONUS_DIR)/%.o: $(BONUS_DIR)/%.c $(BONUS_DEP)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

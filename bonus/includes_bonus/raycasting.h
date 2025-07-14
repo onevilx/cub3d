@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/13 17:15:16 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/14 18:35:16 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define WIDTH 1800
 # define HEIGHT 920
 # define ROT_SPEED 0.05
-# define MOVE_SPEED 0.15
+# define MOVE_SPEED 150
 # define MOUSE_SENSITIVITY 0.002
 # define MINIMAP_TILE 10
 
@@ -56,5 +56,6 @@ void			draw_player(mlx_image_t *img, t_player *player);
 void			init_player(t_player *player, char **map);
 void			rotate_player(t_player *p, double angle);
 int				is_player_near_door(t_cubed *cubed, t_player *player);
+int				is_in_map(t_cubed *cubed, int y, int x);
 
 #endif
