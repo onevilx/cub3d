@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hot_keys.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/13 16:47:44 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/14 16:37:37 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/raycasting.h"
 
-static int	is_walkable(char **map, double x, double y)
+static int	is_valid_walkable(char **map, double x, double y)
 {
 	int	mx;
 	int	my;
@@ -41,18 +41,18 @@ static void	handle_move_ws(t_player *p, t_cubed *cubed, mlx_t *mlx)
 	{
 		nx = p->pos_x + p->dir_x * MOVE_SPEED;
 		ny = p->pos_y + p->dir_y * MOVE_SPEED;
-		if (is_walkable(cubed->map, nx, p->pos_y))
+		if (is_valid_walkable(cubed->map, nx, p->pos_y))
 			p->pos_x = nx;
-		if (is_walkable(cubed->map, p->pos_x, ny))
+		if (is_valid_walkable(cubed->map, p->pos_x, ny))
 			p->pos_y = ny;
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_S))
 	{
 		nx = p->pos_x - p->dir_x * MOVE_SPEED;
 		ny = p->pos_y - p->dir_y * MOVE_SPEED;
-		if (is_walkable(cubed->map, nx, p->pos_y))
+		if (is_valid_walkable(cubed->map, nx, p->pos_y))
 			p->pos_x = nx;
-		if (is_walkable(cubed->map, p->pos_x, ny))
+		if (is_valid_walkable(cubed->map, p->pos_x, ny))
 			p->pos_y = ny;
 	}
 }
@@ -66,18 +66,18 @@ static void	handle_move_ad(t_player *p, t_cubed *cubed, mlx_t *mlx)
 	{
 		nx = p->pos_x - p->plane_x * MOVE_SPEED;
 		ny = p->pos_y - p->plane_y * MOVE_SPEED;
-		if (is_walkable(cubed->map, nx, p->pos_y))
+		if (is_valid_walkable(cubed->map, nx, p->pos_y))
 			p->pos_x = nx;
-		if (is_walkable(cubed->map, p->pos_x, ny))
+		if (is_valid_walkable(cubed->map, p->pos_x, ny))
 			p->pos_y = ny;
 	}
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 	{
 		nx = p->pos_x + p->plane_x * MOVE_SPEED;
 		ny = p->pos_y + p->plane_y * MOVE_SPEED;
-		if (is_walkable(cubed->map, nx, p->pos_y))
+		if (is_valid_walkable(cubed->map, nx, p->pos_y))
 			p->pos_x = nx;
-		if (is_walkable(cubed->map, p->pos_x, ny))
+		if (is_valid_walkable(cubed->map, p->pos_x, ny))
 			p->pos_y = ny;
 	}
 }
