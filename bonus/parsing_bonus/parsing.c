@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:48:02 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 16:35:29 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:17:28 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int	parsing(t_cubed	*cubed)
 	if (r_paths(cubed) == 1)
 		return (ft_putstr_fd("Error\n", 2), 1);
 	if (r_map(cubed) == 1)
-		return (1);
+		return (ft_putstr_fd("Error\n", 2), 1);
 	return (printf("success\n"), 0);
 }

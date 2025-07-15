@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 11:58:06 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:21:09 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	r_map(t_cubed *cubed)
 	trimmed = ft_strtrim(line, "\n\t");
 	free(line);
 	if (!trimmed || !is_map_line(trimmed))
-		return (ft_putstr_fd("Error\n", 2), free(trimmed), 1);
+		return (free(trimmed), 1);
 	map = r_map__(cubed, trimmed);
 	if (!map)
 		return (ft_putstr_fd("Map creation failed\n", 2), 1);

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:21:54 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/14 18:36:47 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:18:22 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_sword_image(t_game *game, mlx_t *mlx)
 			game->cubed->textr.sword_frames[0], 700, 700);
 	if (!sword_img)
 	{
-		printf("Error: Failed to convert sword texture to image\n");
+		ft_putstr_fd("Error: Failed to convert sword texture to image\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	game->cubed->sword_img = sword_img;
@@ -54,7 +54,7 @@ void	init_sword_image(t_game *game, mlx_t *mlx)
 	sword_y = HEIGHT - sword_img->height;
 	if (mlx_image_to_window(mlx, sword_img, sword_x, sword_y) < 0)
 	{
-		printf("Error: Failed to put sword image to window\n");
+		ft_putstr_fd("Error: Failed to put sword image to window\n", 2);
 		exit(EXIT_FAILURE);
 	}
 }

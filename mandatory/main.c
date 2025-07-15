@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/10 15:22:29 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:18:45 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	handle_mlx_and_textures(t_cubed *cubed, mlx_t **mlx)
 	*mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
 	if (!*mlx)
 	{
-		printf("Error initializing MLX\n");
+		ft_putstr_fd("Error initializing MLX\n", 2);
 		return (1);
 	}
 	if (!load_textures(cubed))
@@ -66,7 +66,7 @@ static int	start_game(mlx_t *mlx, t_cubed *cubed, t_player *player)
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!img)
 	{
-		printf("Error creating image\n");
+		ft_putstr_fd("Error creating image\n", 2);
 		return (1);
 	}
 	init_game(&game, cubed, player);

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 07:02:22 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/04 12:35:53 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:23:39 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ static int	norm_map(char **map, int i, int j)
 	if (is_walkable(map[i][j]))
 	{
 		if (touches_void(map, i, j))
-		{
-			write(2, "Error: map not surrounded by walls\n", 35);
 			return (1);
-		}
 	}
 	return (0);
 }

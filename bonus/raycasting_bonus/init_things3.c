@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:44:26 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/13 02:25:06 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:17:44 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	create_minimap_image(t_game *game, mlx_t *mlx)
 	game->minimap = mlx_new_image(mlx, mm_width, mm_height);
 	if (!game->minimap)
 	{
-		printf("Error creating minimap image\n");
+		ft_putstr_fd("Error creating minimap image\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	mlx_image_to_window(mlx, game->minimap, 10, 10);

@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:26:39 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/14 18:35:16 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:06:23 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define WIDTH 1800
 # define HEIGHT 920
 # define ROT_SPEED 0.05
-# define MOVE_SPEED 150
+# define MOVE_SPEED 0.15
 # define MOUSE_SENSITIVITY 0.002
 # define MINIMAP_TILE 10
 
