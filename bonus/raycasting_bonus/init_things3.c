@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:44:26 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/15 17:17:44 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:09:12 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx)
 {
 	game->mlx = mlx;
 	game->img = img;
-	game->cubed->sword_frame = 0;
-	game->cubed->sword_animating = 0;
 	mlx_image_to_window(mlx, game->img, 0, 0);
 	create_minimap_image(game, mlx);
 	init_sword_image(game, mlx);

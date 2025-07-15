@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:07:35 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/13 02:25:36 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/15 19:12:32 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,35 @@ mlx_image_t	*resize_texture_to_image(mlx_t *mlx, mlx_texture_t *tex,
 	return (resized);
 }
 
+static void	update_sword_pixels(t_game *game, mlx_texture_t *tex)
+{
+	int			x;
+	int			y;
+	uint32_t	color;
+	t_img_size	size;
+
+	size.width = game->cubed->sword_img->width;
+	size.height = game->cubed->sword_img->height;
+	y = -1;
+	while (++y < size.height)
+	{
+		x = -1;
+		while (++x < size.width)
+		{
+			color = get_scaled_pixel_color(tex, x, y, size);
+			mlx_put_pixel(game->cubed->sword_img, x, y, color);
+		}
+	}
+}
+
 void	animate_sword(t_game *game)
 {
-	static int	frame_timer = 0;
-	int			sword_x;
-	int			sword_y;
+	static int		frame_timer = 0;
+	mlx_texture_t	*tex;
 
 	if (!game->cubed->sword_animating)
 		return ;
-	frame_timer++;
-	if (frame_timer < 1)
+	if (++frame_timer < 1)
 		return ;
 	frame_timer = 0;
 	game->cubed->sword_frame++;
@@ -76,14 +95,9 @@ void	animate_sword(t_game *game)
 	{
 		game->cubed->sword_frame = 0;
 		game->cubed->sword_animating = 0;
+		return ;
 	}
-	if (game->cubed->sword_img)
-		mlx_delete_image(game->mlx, game->cubed->sword_img);
-	game->cubed->sword_img = resize_texture_to_image(game->mlx,
-			game->cubed->textr.sword_frames[game->cubed->sword_frame],
-			700, 700);
-	sword_x = (WIDTH - game->cubed->sword_img->width) / 2;
-	sword_y = HEIGHT - game->cubed->sword_img->height;
-	mlx_image_to_window(game->mlx, game->cubed->sword_img, sword_x, sword_y);
-	game->cubed->sword_img->instances[0].z = 10;
+
+	tex = game->cubed->textr.sword_frames[game->cubed->sword_frame];
+	update_sword_pixels(game, tex);
 }
