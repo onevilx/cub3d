@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 18:07:35 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/15 19:12:32 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/16 09:21:06 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ void	animate_sword(t_game *game)
 		game->cubed->sword_animating = 0;
 		return ;
 	}
-
 	tex = game->cubed->textr.sword_frames[game->cubed->sword_frame];
 	update_sword_pixels(game, tex);
 }
