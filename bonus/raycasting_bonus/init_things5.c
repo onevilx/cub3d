@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things5.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 02:21:54 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/15 17:18:22 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:22:28 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,14 @@ void	mouse_look(t_game *game)
 
 int	is_in_map(t_cubed *cubed, int y, int x)
 {
+	int	map_height;
+
 	if (y < 0 || x < 0)
 		return (0);
-	if (!cubed->map[y])
+	map_height = 0;
+	while (cubed->map[map_height])
+		map_height++;
+	if (y >= map_height)
 		return (0);
 	if (x >= (int)ft_strlen(cubed->map[y]))
 		return (0);

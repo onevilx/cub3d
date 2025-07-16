@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:44:26 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/15 19:09:12 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:42:22 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,11 @@ void	get_map_dimensions(char **map, int *width, int *height)
 
 void	create_minimap_image(t_game *game, mlx_t *mlx)
 {
-	int	map_w;
-	int	map_h;
 	int	mm_width;
 	int	mm_height;
 
-	get_map_dimensions(game->cubed->map, &map_w, &map_h);
-	mm_width = map_w * TILE_SIZE;
-	mm_height = map_h * TILE_SIZE;
+	mm_width = (2 * MINIMAP_RADIUS + 1) * TILE_SIZE;
+	mm_height = (2 * MINIMAP_RADIUS + 1) * TILE_SIZE;
 	game->minimap = mlx_new_image(mlx, mm_width, mm_height);
 	if (!game->minimap)
 	{
@@ -61,27 +58,4 @@ void	init_game_img(t_game *game, mlx_image_t *img, mlx_t *mlx)
 	mlx_image_to_window(mlx, game->img, 0, 0);
 	create_minimap_image(game, mlx);
 	init_sword_image(game, mlx);
-}
-
-void	draw_minimap(mlx_image_t *img, t_cubed *cubed, t_player *player)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (cubed->map[y])
-	{
-		x = 0;
-		while (cubed->map[y][x])
-		{
-			if (cubed->map[y][x] == '1')
-				draw_square(img, x, y, 0xFFFFFFFF);
-			else if (cubed->map[y][x] == '0'
-				|| ft_strrchr("NSEW", cubed->map[y][x]))
-				draw_square(img, x, y, 0x333333FF);
-			x++;
-		}
-		y++;
-	}
-	draw_player(img, player);
 }

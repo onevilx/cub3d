@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+         #
+#    By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/25 22:14:24 by adechaji          #+#    #+#              #
-#    Updated: 2025/07/14 18:20:59 by adechaji         ###   ########.fr        #
+#    Updated: 2025/07/16 10:38:08 by yaboukir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC				= cc
 RM				= rm -f
 AR				= ar rcs
 
-CFLAGS			= -Wall -Wextra -Werror -Iincludes -IMLX42/include -I/mnt/homes/$(USER)/brew/include -g -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -Iincludes -IMLX42/include -I/mnt/homes/$(USER)/brew/include
 LDFLAGS			= -LMLX42/build -L/mnt/homes/$(USER)/homebrew/lib -lmlx42 -ldl -lglfw -lm -pthread
 
 MAND_DIR		= mandatory
@@ -72,9 +72,9 @@ SRC_BONUS		= $(BONUS_DIR)/main.c \
 
 OBJS_BONUS		= $(SRC_BONUS:.c=.o)
 
-MAND_DEP		= mandatory/includes/*.h 
+MAND_DEP		= mandatory/includes/*.h
 
-BONUS_DEP		= bonus/includes_bonus/*.h 
+BONUS_DEP		= bonus/includes_bonus/*.h
 
 all: $(NAME)
 

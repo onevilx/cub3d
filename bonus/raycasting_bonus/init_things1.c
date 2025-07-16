@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 10:41:46 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/10 16:25:00 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:37:54 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,48 +46,55 @@ void	draw_square(mlx_image_t *img, int x, int y, uint32_t color)
 	}
 }
 
-static void	draw_player_pixel(mlx_image_t *img, int dx, int dy)
+void	draw_player_on_minimap(mlx_image_t *img, t_player *p,
+	int start_x, int start_y)
 {
-	uint32_t	*pixels;
+	int	tile_x;
+	int	tile_y;
 
-	if (dx >= 0 && dy >= 0
-		&& dx < (int)img->width && dy < (int)img->height)
-	{
-		pixels = (uint32_t *)img->pixels;
-		pixels[dy * img->width + dx] = 0xFF0000FF;
-	}
+	tile_x = (int)(p->pos_x - start_x);
+	tile_y = (int)(p->pos_y - start_y);
+	if (tile_x >= 0 && tile_y >= 0
+		&& tile_x < (2 * MINIMAP_RADIUS + 1)
+		&& tile_y < (2 * MINIMAP_RADIUS + 1))
+		draw_square(img, tile_x, tile_y, 0xFF0000FF);
 }
 
-static void	draw_player_body(mlx_image_t *img, int px, int py, int half)
+void	draw_minimap_loop(mlx_image_t *img, t_cubed *cubed,
+	t_player *player, int start_x)
 {
 	int	x;
 	int	y;
-	int	dx;
-	int	dy;
+	int	start_y;
+	int	end_x;
+	int	end_y;
 
-	y = -half;
-	while (y <= half)
+	start_y = (int)player->pos_y - MINIMAP_RADIUS;
+	end_x = (int)player->pos_x + MINIMAP_RADIUS;
+	end_y = (int)player->pos_y + MINIMAP_RADIUS;
+	y = start_y - 1;
+	while (++y <= end_y)
 	{
-		x = -half;
-		while (x <= half)
+		x = start_x - 1;
+		while (++x <= end_x)
 		{
-			dx = px + x;
-			dy = py + y;
-			draw_player_pixel(img, dx, dy);
-			x++;
+			if (!is_in_map(cubed, y, x))
+				continue ;
+			if (cubed->map[y][x] == '1')
+				draw_square(img, x - start_x, y - start_y, 0xFFFFFFFF);
+			else if (cubed->map[y][x] == '0'
+				|| ft_strrchr("NSEW", cubed->map[y][x]))
+				draw_square(img, x - start_x, y - start_y, 0x333333FF);
 		}
-		y++;
 	}
 }
 
-void	draw_player(mlx_image_t *img, t_player *p)
+void	draw_minimap(mlx_image_t *img, t_cubed *cubed, t_player *player)
 {
-	int	px;
-	int	py;
-	int	half;
+	int	start_x;
 
-	px = (int)(p->pos_x * MINIMAP_TILE);
-	py = (int)(p->pos_y * MINIMAP_TILE);
-	half = MINIMAP_TILE / 2;
-	draw_player_body(img, px, py, half);
+	start_x = (int)player->pos_x - MINIMAP_RADIUS;
+	draw_minimap_loop(img, cubed, player, start_x);
+	draw_player_on_minimap(img, player, start_x,
+		(int)player->pos_y - MINIMAP_RADIUS);
 }

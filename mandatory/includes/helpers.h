@@ -6,7 +6,7 @@
 /*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 01:27:49 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/09 01:55:57 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/16 10:58:14 by yaboukir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	free_splited(char **split);
 void	*ft_memcpy(void *dest, const void *src, size_t num);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strtrim(char const *s1, char const *set);
+void	*ft_memset(void *b, int c, size_t len);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);
 int		ft_strlen(const char *s);
