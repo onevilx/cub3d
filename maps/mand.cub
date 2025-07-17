@@ -1,5 +1,5 @@
-NO ./mandatory/textures/wall1.png
-SO ./mandatory/textures/wall2.png
+NO ./mandatory/textures/wall2.png
+SO ./mandatory/textures/wall1.png
 WE ./mandatory/textures/wall3.png
 EA ./mandatory/textures/wall4.png
 

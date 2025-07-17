@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:44:35 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/15 17:20:07 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:33:24 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	*full_valids(t_cubed *cubed, int *flag)
 	if (*flag)
 	{
 		free(line);
-		return (NULL);
+		return ((char *)MAP_ERR);
 	}
 	trimmed = ft_strtrim(line, "\n");
 	free(line);
@@ -84,6 +84,8 @@ static char	**r_map__(t_cubed *cubed, char *trimmed)
 		map[count++] = trimmed;
 		map[count] = NULL;
 		trimmed = full_valids(cubed, &flag);
+		if (trimmed == (char *)MAP_ERR)
+			return (free_splited(map), NULL);
 		if (!trimmed)
 			break ;
 	}

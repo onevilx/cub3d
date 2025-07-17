@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:25:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/14 18:19:50 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:35:32 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PARSING_H
 
 # include "cub3d.h"
+# define MAP_ERR -1
 
 //main func
 int			parsing(t_cubed	*cubed);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yaboukir <yaboukir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:25:57 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/16 11:03:09 by yaboukir         ###   ########.fr       */
+/*   Updated: 2025/07/17 18:31:45 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PARSING_H
 
 # include "cub3d.h"
+# define MAP_ERR -1
 
 int			parsing(t_cubed	*cubed);
 int			r_paths(t_cubed	*cubed);
