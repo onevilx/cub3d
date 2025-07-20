@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 22:15:39 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/20 15:35:09 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:38:58 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,13 @@ static int	start_game(mlx_t *mlx, t_cubed *cubed, t_player *player)
 	mlx_terminate(mlx);
 	return (0);
 }
-
+void f()
+{
+	system("leaks cub3D");
+}
 int	main(int ac, char **av)
 {
+	atexit(f);
 	t_cubed		cubed;
 	t_player	player;
 	mlx_t		*mlx;

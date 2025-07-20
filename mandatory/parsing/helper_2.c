@@ -6,7 +6,7 @@
 /*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 00:28:49 by adechaji          #+#    #+#             */
-/*   Updated: 2025/07/20 15:30:52 by adechaji         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:40:39 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	valid_color(char *str, int *clr)
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (1);
+		return (free_splited(rgb), 1);
 	*clr = (r << 24) | (g << 16) | (b << 8) | 255;
 	free_splited(rgb);
 	return (0);
