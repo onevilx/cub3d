@@ -1,0 +1,36 @@
+redendant file path at the end
+redendant direction path (abort)
+no extension: WE ./mandatory/textures/wall3
+
+Unkown error:  "SO ./mandatory/textures/wall3.png
+                EA ./mandatory/textures/wall3.png
+                WE ./mandatory/textures/wall3.png
+                NO ./mandatory/textures/wall3.png
+
+                F 255,128,0
+                C 0,255,25
+
+                111111111
+                100000001
+                100000001
+                10000N001
+                100000001
+                111111111"
+
+unreasonable speed protection 0.1 < speed < 1
+
+////////////////////////////////////////////////
+
+minimap
+    shifting sometimes (not precise)  ==> add a mini player instead of rendering the tile the player is standing on
+    (optional) add action button to show the mouse
+
+////////////////////////////////////////////////
+SEGV: multiple same paths:  NO ./mandatory/textures/wall3.png
+                            NO ./mandatory/textures/wall3.png
+                            NO ./mandatory/textures/wall3.png
+                            NO ./mandatory/textures/wall3.png
+
+
+=================================================
+0,0,
