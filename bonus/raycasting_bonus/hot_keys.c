@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hot_keys.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: onevil_x <onevil_x@student.42.fr>          +#+  +:+       +#+        */
+/*   By: adechaji <adechaji@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 11:05:00 by yaboukir          #+#    #+#             */
-/*   Updated: 2025/07/19 20:51:42 by onevil_x         ###   ########.fr       */
+/*   Updated: 2025/07/20 15:34:14 by adechaji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ void	game_loop(void *param)
 
 	if (MOVE_SPEED > 1.0)
 	{
-		ft_putstr_fd("Error: MOVE_SPEED exceeds maximum allowed value of 1.0\n", 2);
+		ft_putstr_fd("Error: MOVE_SPEED exceeds maximum allowed value of 1.0\n",
+			2);
 		exit(EXIT_FAILURE);
 	}
 	game = (t_game *)param;
